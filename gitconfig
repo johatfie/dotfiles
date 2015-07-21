@@ -1,0 +1,14 @@
+[user]
+	email = johatfie@gmail.com
+	name = Jon Hatfield
+[core]
+	excludesfile = ~/.cvsignore
+	editor = vim
+	autocrlf = input
+[credential]
+	helper = cache
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
