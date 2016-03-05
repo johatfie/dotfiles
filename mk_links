@@ -1,0 +1,23 @@
+mv .bash_logout        ~/.dotfiles/bash_logout
+mv .bash_profile       ~/.dotfiles/bash_profile
+mv .bashrc             ~/.dotfiles/bashrc
+mv .curlrc             ~/.dotfiles/curlrc
+mv .cvsignore          ~/.dotfiles/cvsignore
+mv .gitconfig          ~/.dotfiles/gitconfig
+mv .mkshrc             ~/.dotfiles/mkshrc
+mv .profile            ~/.dotfiles/profile
+mv .zlogin             ~/.dotfiles/zlogin
+mv .zshrc              ~/.dotfiles/zshrc
+
+
+
+ln -s ~/.dotfiles/bash_logout      .bash_logout        
+ln -s ~/.dotfiles/bash_profile     .bash_profile       
+ln -s ~/.dotfiles/bashrc           .bashrc             
+ln -s ~/.dotfiles/curlrc           .curlrc             
+ln -s ~/.dotfiles/cvsignore        .cvsignore          
+ln -s ~/.dotfiles/gitconfig        .gitconfig          
+ln -s ~/.dotfiles/mkshrc           .mkshrc             
+ln -s ~/.dotfiles/profile          .profile            
+ln -s ~/.dotfiles/zlogin           .zlogin             
+ln -s ~/.dotfiles/zshrc            .zshrc              

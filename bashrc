@@ -4,9 +4,11 @@
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+alias ..='cd ..'  
 alias ...='cd ../..'  
 alias ....='cd ../../..'  
 alias .....='cd ../../../..'  
+alias la=ls -a
 
 
 
