@@ -1,23 +1,34 @@
-mv .bash_logout        ~/.dotfiles/bash_logout
-mv .bash_profile       ~/.dotfiles/bash_profile
-mv .bashrc             ~/.dotfiles/bashrc
-mv .curlrc             ~/.dotfiles/curlrc
-mv .cvsignore          ~/.dotfiles/cvsignore
-mv .gitconfig          ~/.dotfiles/gitconfig
-mv .mkshrc             ~/.dotfiles/mkshrc
-mv .profile            ~/.dotfiles/profile
-mv .zlogin             ~/.dotfiles/zlogin
-mv .zshrc              ~/.dotfiles/zshrc
+cd
+
+[[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles/bash_aliases
+[[ ! -f .bash_functions ]] && mv .bash_functions ~/.dotfiles/bash_functions
+[[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles/bash_logout
+[[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles/bash_profile
+[[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles/bashrc
+[[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles/curlrc
+[[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles/cvsignore
+[[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles/gitconfig
+[[ ! -f .inputrc        ]] && mv .inputrc        ~/.dotfiles/inputrc
+[[ ! -f .irbrc          ]] && mv .irbrc          ~/.dotfiles/irbrc
+[[ ! -f .mkshrc         ]] && mv .mkshrc         ~/.dotfiles/mkshrc
+[[ ! -f .profile        ]] && mv .profile        ~/.dotfiles/profile
+[[ ! -f .rvmrc          ]] && mv .rvmrc          ~/.dotfiles/rvmrc
+[[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles/zlogin
+[[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles/zshrc
 
 
-
-ln -s ~/.dotfiles/bash_logout      .bash_logout        
-ln -s ~/.dotfiles/bash_profile     .bash_profile       
-ln -s ~/.dotfiles/bashrc           .bashrc             
-ln -s ~/.dotfiles/curlrc           .curlrc             
-ln -s ~/.dotfiles/cvsignore        .cvsignore          
-ln -s ~/.dotfiles/gitconfig        .gitconfig          
-ln -s ~/.dotfiles/mkshrc           .mkshrc             
-ln -s ~/.dotfiles/profile          .profile            
-ln -s ~/.dotfiles/zlogin           .zlogin             
-ln -s ~/.dotfiles/zshrc            .zshrc              
+ln -s ~/.dotfiles/bash_aliases   ~/.bash_aliases
+ln -s ~/.dotfiles/bash_functions ~/.bash_functions
+ln -s ~/.dotfiles/bash_logout    ~/.bash_logout
+ln -s ~/.dotfiles/bash_profile   ~/.bash_profile
+ln -s ~/.dotfiles/bashrc         ~/.bashrc
+ln -s ~/.dotfiles/curlrc         ~/.curlrc
+ln -s ~/.dotfiles/cvsignore      ~/.cvsignore
+ln -s ~/.dotfiles/gitconfig      ~/.gitconfig
+ln -s ~/.dotfiles/inputrc        ~/.inputrc
+ln -s ~/.dotfiles/irbrc          ~/.irbrc
+ln -s ~/.dotfiles/mkshrc         ~/.mkshrc
+ln -s ~/.dotfiles/profile        ~/.profile
+ln -s ~/.dotfiles/rvmrc          ~/.rvmrc
+ln -s ~/.dotfiles/zlogin         ~/.zlogin
+ln -s ~/.dotfiles/zshrc          ~/.zshrc
