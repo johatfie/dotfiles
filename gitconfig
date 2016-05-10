@@ -1,14 +1,191 @@
 [user]
-	email = johatfie@gmail.com
-	name = Jon Hatfield
-[core]
-	excludesfile = ~/.cvsignore
-	editor = vim
-	autocrlf = input
-[credential]
-	helper = cache
+    name = Jon Hatfield
+    email = jhatfield@salesforce.com
+
+[filter "lfs"]
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+
+
+[merge]
+    tool = p4merge
+    keepBackup = false
+
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
+
+[merge "pmerge"]
+    name = perforce merge driver
+    driver = ~/merge_driver %A %O %B
+
+[mergetool "p4merge"]
+    ;path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
+    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
+    keepTemporaries = false
+    ;trustExitCode = false
+    ;keepBackup = false
+
+[mergetool "p4mergetool"]
+    trustExitCode = false
+
+[mergetool]
+    keepBackup = false
+    prompt = false
+
+    # Detect copies as well as renames
+    renames = copies
+
+[diff]
+    tool = p4merge
+
+[difftool "mvim"]
+    # TODO: doesn't work
+    cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
+
+[difftool "p4merge"]
+    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+    ;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
+    keepTemporaries = false
+    trustExitCode = false
+    keepBackup = false
+
+[difftool]
+    keepBackup = false
+
+[color]
+    branch = auto
+    diff = auto
+    status = auto
+    grep = auto
+
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = auto
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[apply]
+
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
+
+[help]
+
+    # Automatically correct and execute mistyped commands
+    autocorrect = 1
+
+[rerere]
+    enabled = true
+
 [alias]
-	co = checkout
-	br = branch
-	ci = commit
-	st = status
+    a = add
+
+    ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not master"
+
+    # Amend the currently staged files to the latest commit
+    amend = commit --amend --reuse-message=HEAD
+
+    # list branches sorted by last modified
+    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+
+    behind = "!git log -p master --not $(git rev-parse --abbrev-ref HEAD)"
+    br = branch
+    ci = commit
+    cm = !git add -A && git commit -m
+    co = checkout
+    ec = config --global -e
+
+    # Find alias
+    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
+
+    graph = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
+    last = log -1 HEAD
+    lg = log --color --decorate --graph --oneline --abbrev-commit
+    # ll = log --color --decorate --oneline --abbrev-commit
+
+    # List commits showing changed files is invoked with git ll and looks like this:
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+    # List commits in short form, with colors and branch/tag annotations.
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+    pushgh = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+    staged = diff --cached
+    st = status
+    undo = reset HEAD~1 --mixed
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    wip = !git add -u && git commit -m "WIP"
+    wipa = !git add -u && git amend
+    visual = !gitk
+
+[core]
+    excludesfile = /Users/jhatfield/.cvsignore
+    editor = mvim -v
+    autocrlf = input
+
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+
+    # Make `git rebase` safer on OS X
+    # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+    trustctime = false
+
+    # Prevent showing files whose names contain non-ASCII symbols as unversioned.
+    # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+    precomposeunicode = false
+
+# URL shorthands
+
+[url "git@github.com:"]
+
+    insteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+
+    insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+
+    insteadOf = "gst:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+
+    insteadOf = "gist:"
+
+[include]
+    path = ~/.gitconfig.local
+
+[init]
+    templatedir = ~/.gittemplate
+[gui]
+    recentrepo = /Users/jhatfield/projects/batchelor
+[difftool "sourcetree"]
+    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+    path = 
+[mergetool "sourcetree"]
+    cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    trustExitCode = true
