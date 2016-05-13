@@ -5,6 +5,7 @@ cd
 [[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles/bash_logout
 [[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles/bash_profile
 [[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles/bashrc
+[[ ! -f .crontab        ]] && mv .crontab        ~/.dotfiles/crontab
 [[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles/curlrc
 [[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles/cvsignore
 [[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles/gitconfig
@@ -22,6 +23,7 @@ ln -s ~/.dotfiles/bash_functions ~/.bash_functions
 ln -s ~/.dotfiles/bash_logout    ~/.bash_logout
 ln -s ~/.dotfiles/bash_profile   ~/.bash_profile
 ln -s ~/.dotfiles/bashrc         ~/.bashrc
+ln -s ~/.dotfiles/crontab        ~/.crontab
 ln -s ~/.dotfiles/curlrc         ~/.curlrc
 ln -s ~/.dotfiles/cvsignore      ~/.cvsignore
 ln -s ~/.dotfiles/gitconfig      ~/.gitconfig

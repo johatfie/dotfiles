@@ -14,6 +14,8 @@ alias df='df -h'
 alias du='du -ch'
 
 # Misc :)
+alias alais=alias
+alias 'alias?'='alias | grep'
 alias less='less -r'                          # raw control characters
 alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
@@ -31,6 +33,7 @@ alias rmvim='mvim -S ~/Session.vim'
 alias o='open -a'
 alias 'ps?'='ps aux | grep'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
+alias ssh_config="cat ~/.ssh/config.d/* > ~/.ssh/config"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
