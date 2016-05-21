@@ -54,11 +54,4 @@ fi
 PATH=path | awk ' !x[$0]++'
 export PATH="/usr/local/sbin:$PATH"
 
-##
-# Your previous /Users/jhatfield/.bash_profile file was backed up as /Users/jhatfield/.bash_profile.macports-saved_2016-04-19_at_19:25:32
-##
-
-# MacPorts Installer addition on 2016-04-19_at_19:25:32: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
+echo "running .bash_profile"
