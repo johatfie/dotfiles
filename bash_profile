@@ -52,6 +52,7 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH | awk ' !x[$0]++'"
+#export PATH="$PATH | awk ' !x[$0]++'"
+export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 
-echo "running .profile"
+echo "running .bash_profile"

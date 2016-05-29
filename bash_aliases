@@ -30,7 +30,8 @@ alias reload='source ~/.bashrc'
 # alias rmvim='mvim -S ~/Session.vim'
 # alias o='open -a'
 alias 'ps?'='ps aux | grep'
-alias busy="cat /dev/urandom | hexdump -C | grep \"ca fe\""
+alias 'alias?'='alias | grep'
+alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 alias env='env | sort'
 
 # Pretty print the path
