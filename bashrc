@@ -112,15 +112,13 @@ fi
 
 
 
-export COMPOSE_PROJECT_NAME=cobaltstarfish
-export AWS_ACCESS_KEY_ID=AKIAJNQA6Y6RX6VMI2DQ
-export AWS_SECRET_ACCESS_KEY=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
-export HOMEBREW_GITHUB_API_TOKEN="3ed07ccab1de3e6f710508d4be6e337d65728841"
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 #  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 
 echo "Running .bashrc"

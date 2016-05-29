@@ -255,3 +255,4 @@ fi
 }
 
 
+echo "Running .bash_functions"

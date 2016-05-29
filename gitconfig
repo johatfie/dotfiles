@@ -1,6 +1,6 @@
 [user]
     name = Jon Hatfield
-    email = jhatfield@salesforce.com
+    email = johatfie@gmail.com
 
 [filter "lfs"]
     clean = git lfs clean %f
@@ -39,9 +39,9 @@
 [diff]
     tool = p4merge
 
-[difftool "mvim"]
-    # TODO: doesn't work
-    cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
+# [difftool "mvim"]
+#     # TODO: doesn't work
+#     cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
 
 [difftool "p4merge"]
     cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
@@ -137,8 +137,8 @@
     visual = !gitk
 
 [core]
-    excludesfile = /Users/jhatfield/.cvsignore
-    editor = mvim -v
+    excludesfile = /usr/home/jon/.cvsignore
+    editor = vim
     autocrlf = input
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -185,7 +185,7 @@
     recentrepo = /Users/jhatfield/projects/batchelor
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path = 
-[mergetool "sourcetree"]
-    cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+    path =
+# [mergetool "sourcetree"]
+#     cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true

@@ -23,14 +23,15 @@ alias wget='wget -c'                          # allow resuming downloads
 alias h='history | grep '
 alias clear='printf "\033c"'
 alias reload='source ~/.bashrc'
-# alias cat='pygmentize -g'
-# alias catln='pygmentize -g -O style=colorful,linenos=1'
+ alias cat='pygmentize -g'
+ alias catln='pygmentize -g -O style=colorful,linenos=1'
 # alias update='brew update; brew upgrade'
 # alias vim='mvim -v'
 # alias rmvim='mvim -S ~/Session.vim'
 # alias o='open -a'
 alias 'ps?'='ps aux | grep'
 alias busy="cat /dev/urandom | hexdump -C | grep \"ca fe\""
+alias env='env | sort'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -124,3 +125,7 @@ alias snb="ssh cap@nova-reporting.igodigital.net"
 alias stb="ssh cap@tau-reporting.igodigital.net"
 alias sqb="ssh cap@qa-reporting.igodigital.net"
 alias suat="ssh cap@uat-reporting.igodigital.net"
+
+
+echo "Running .bash_aliases"
+
