@@ -15,10 +15,46 @@ $include /etc/Inputrc
 set editing-mode vi
 
 TAB: menu-complete
+SPACE:magic-space
+"\C-f": complete
 
+# shift tab to reverse menu complete
+"\e[Z": "\e-1\C-i"
+
+# Two escapes clear command line.
+#"\e\e": "\C-a\C-k"
+
+$if mode=vi
+    # glob patterns without executing, eg: 'rm *x'
+    "\C-e": glob-expand-word
+
+    # Vim style history search (Already Default)
+    #"\e[A": history-search-backward
+    #"\e[B": history-search-forward
+
+    #"\e[C": forward-char
+    #"\e[D": backward-char
+
+    # Two escapes clear command line. (Use C-c or \eC\eC instead)
+    "\e\e": "\e0\C-ki"
+
+    set keymap vi-command
+    "gg": beginning-of-history
+    "G": end-of-history
+
+    set keymap vi-insert
+    "jj": vi-movement-mode
+    #"\C-w": backward-kill-word
+    #"\C-p": history-search-backward
+$endif
 
 # Make Tab autocomplete regardless of filename case
 set completion-ignore-case on
+
+# If set to `on', and completion-ignore-case is enabled, Readline treats
+# hyphens (`-') and underscores (`_') as equivalent when performing
+# case-insensitive filename matching and completion.
+set completion-map-case on
 
 # This one is insanely useful when you have a folder with lots of similarly
 # named files and you are not sure how far the completion has gone when you
@@ -28,6 +64,11 @@ set completion-prefix-display-length 2
 
 # List all matches in case multiple possible completions are possible
 set show-all-if-ambiguous on
+
+# If set to `on', add a character to the beginning of the prompt indicating
+# the editing mode: emacs (`@'), vi command (`:'), or vi insertion (`+').
+# The default value is `off'.
+set show-mode-in-prompt on
 
 # Immediately add a trailing slash when autocompleting symlinks to directories
 set mark-symlinked-directories on
@@ -44,13 +85,18 @@ set mark-symlinked-directories on
 set match-hidden-files off
 
 # Show all autocomplete results at once
-set page-completions off
+#set page-completions off
 
 # If there are more than 200 possible completions for a word, ask to show them all
 set completion-query-items 200
 
 # Show extra file information when completing, like `ls -F` does
 set visible-stats on
+
+# If set to On, readline displays possible completions using different colors to
+# indicate their file type.  The color definitions are taken from the value of
+# the LS_COLORS environment variable.
+set colored-stats on
 
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and
@@ -66,3 +112,6 @@ set convert-meta off
 
 # Use Alt/Meta + Delete to delete the preceding word
 "\e[3;3~": kill-word
+
+# Only show directories when typing the cd command
+#complete -d cd
