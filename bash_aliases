@@ -33,7 +33,7 @@ alias rmvim='mvim -S ~/Session.vim'
 alias o='open -a'
 alias 'ps?'='ps aux | grep'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
-alias ssh_config="cat ~/.ssh/config.d/* > ~/.ssh/config"
+alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -91,7 +91,7 @@ alias restart_docker="docker-compose kill; clear_pids; docker-compose up -d; cle
 alias clear_pids="\rm ~/projects/collector/tmp/pids/server.pid; \rm ~/projects/crimsonKraken/tmp/pids/server.pid; \rm ~/projects/silverMonkey/tmp/pids/server.pid; \rm ~/projects/greenHawk/tmp/pids/server.pid"
 alias mfa="ssh igo-ssh-gw -fN"
 # alias bundle_update="for X in collect blacksquid ck batchelor recs reporting; do docker-compose run \$X bundle install; done"
-alias bundle_update="for X in batchelor collect blacksquid ck recs reporting; do echo running docker-compose run \$X bundle install; docker-compose run \$X bundle install; done"
+alias bundle_update="for X in batchelor collect blacksquid ck recs reporting; do echo running docker-compose run \$X bundle install --no-prune; docker-compose run \$X bundle install --no-prune; done"
 alias snovab="ssh cap@nova-reporting.igodigital.net"
 alias tnova="ssh cap@nova-reporting -L 27111:localhost:27017 -N -f"
 

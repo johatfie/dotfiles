@@ -66,6 +66,8 @@ shopt -s cdspell
 # Any completions you add in ~/.bash_completion are sourced last.
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
+complete -d cd
+
 # History Options
 #
 # Don't put duplicate lines in the history.

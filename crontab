@@ -1,2 +1,2 @@
-0 18 * * * /Users/jhatfield/scripts/update_ssh_config
+0 * * * * /Users/jhatfield/scripts/update_ssh_config
 @reboot    /Users/jhatfield/scripts/update_ssh_config
