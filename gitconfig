@@ -2,6 +2,10 @@
     name = Jon Hatfield
     email = jhatfield@salesforce.com
 
+[commit]
+    template = ~/.git_commit_template
+
+
 [filter "lfs"]
     clean = git lfs clean %f
     smudge = git lfs smudge %f

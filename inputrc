@@ -7,7 +7,7 @@
 #
 # First, include any system-wide bindings and variable
 # assignments from /etc/Inputrc
-$include /etc/Inputrc
+#$include /etc/Inputrc
 
 #
 # Set various bindings for vi mode.
@@ -42,8 +42,8 @@ $if mode=vi
     "gg": beginning-of-history
     "G": end-of-history
 
-    set keymap vi-insert       
-    "jj": vi-movement-mode     
+    set keymap vi-insert
+    "jj": vi-movement-mode
     #"\C-w": backward-kill-word
     #"\C-p": history-search-backward
 $endif
