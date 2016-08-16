@@ -36,6 +36,11 @@ alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
 alias jgrep='~/scripts/jgrep'
 alias env='env | sort'
+alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias g='git'
+alias gc='git commit'
+alias gcv='git commit --no-verify'
+alias gst='git status'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'

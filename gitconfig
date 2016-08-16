@@ -139,6 +139,7 @@
     wip = !git add -u && git commit -m "WIP"
     wipa = !git add -u && git amend
     visual = !gitk
+	server = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
 [core]
     excludesfile = /Users/jhatfield/.cvsignore
