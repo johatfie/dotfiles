@@ -1,0 +1,2 @@
+0 * * * * /Users/jhatfield/scripts/update_ssh_config
+@reboot    /Users/jhatfield/scripts/update_ssh_config

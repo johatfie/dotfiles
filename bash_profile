@@ -28,6 +28,10 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+# if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+#   . "$(brew --prefix)/share/bash-completion/bash_completion"
+# fi
+
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
@@ -52,6 +56,7 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="/usr/local/sbin:$PATH"
+
 #export PATH="$PATH | awk ' !x[$0]++'"
 export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 

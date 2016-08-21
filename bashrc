@@ -42,6 +42,7 @@ set -o vi
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
 
+#
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 

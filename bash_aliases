@@ -14,6 +14,8 @@ alias df='df -h'
 alias du='du -ch'
 
 # Misc :)
+alias alais=alias
+alias 'alias?'='alias | grep'
 alias less='less -r'                          # raw control characters
 alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
@@ -36,6 +38,7 @@ alias env='env | sort'
 alias virtualbox='virtualbox &'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -89,7 +92,6 @@ alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 # Salesforce related
 alias dm="docker-machine"
 alias fig="docker-compose"
-
 
 
 echo "Running .bash_aliases"

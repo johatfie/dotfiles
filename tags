@@ -4,3 +4,10 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+check_for_flag	/Users/jhatfield/dotfiles/git_hooks/pre-push/check_for_no_push_flag	/^function check_for_flag {$/;"	f
+find_conflict_markers	/Users/jhatfield/dotfiles/git_hooks/pre-commit/stop_incomplete_merge	/^function find_conflict_markers {$/;"	f
+main	/Users/jhatfield/dotfiles/git_hooks/pre-commit/check_syntax.sh	/^function main {$/;"	f
+process_staged_files	/Users/jhatfield/dotfiles/git_hooks/pre-commit/check_syntax.sh	/^function process_staged_files {$/;"	f
+process_working_tree_files	/Users/jhatfield/dotfiles/git_hooks/pre-commit/check_syntax.sh	/^function process_working_tree_files {$/;"	f
+run_test	/Users/jhatfield/dotfiles/git_hooks/pre-receive/freespace	/^function run_test {$/;"	f
+test_file	/Users/jhatfield/dotfiles/git_hooks/pre-commit/bash_syntax	/^function test_file {$/;"	f
