@@ -94,7 +94,7 @@ shopt -s histappend
 
 # Some people use a different file for aliases
 if [ -f "${HOME}/.bash_aliases" ]; then
-  source "${HOME}/.bash_aliases"
+    source "${HOME}/.bash_aliases"
 fi
 
 # Umask
@@ -109,18 +109,25 @@ fi
 
 # Some people use a different file for functions
 if [ -f "${HOME}/.bash_functions" ]; then
-  source "${HOME}/.bash_functions"
+    source "${HOME}/.bash_functions"
 fi
 
 
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+# Load the default .profile
+if [ -s "$HOME/.profile" ] ; then
+    source "$HOME/.profile"
+fi
 
 #  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
+
+export EDITOR=/usr/local/bin/vim
+export PAGER=less
+export GPG_TTY=$(tty)
+# export GPG_TTY
 
 echo "Running .bashrc"

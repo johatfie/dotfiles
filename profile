@@ -38,10 +38,58 @@
 # echo "Running .profile"
 
 
-export PATH=/usr/local/bin:$PATH
-export PATH="~/.bundler_binstubs:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Set PATH so it includes user's private bin if it exists
+if [ -d "${HOME}/bin" ] ; then
+  PATH="${HOME}/bin:${PATH}"
+fi
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Set PATH so it includes user's brew Applications folder if it exists
+if [ -d "${HOME}/Applications" ] ; then
+  PATH="${HOME}/Applications:${PATH}"
+fi
 
+if [ -d "/usr/local/bin" ] ; then
+  PATH="/usr/local/bin:${PATH}"
+fi
+
+if [ -d "${HOME}/.bundler_binstubs" ] ; then
+  PATH="~/.bundler_binstubs:${PATH}"
+fi
+#
+# Add RVM to PATH for scripting
+if [ -d "${HOME}/.rvm/bin" ] ; then
+  PATH="${PATH}:$HOME/.rvm/bin"
+fi
+
+# Set MANPATH so it includes users' private man if it exists
+if [ -d "${HOME}/man" ]; then
+  MANPATH="${HOME}/man:${MANPATH}"
+fi
+
+# Set INFOPATH so it includes users' private info if it exists
+if [ -d "${HOME}/info" ]; then
+  INFOPATH="${HOME}/info:${INFOPATH}"
+fi
+
+# Load RVM into a shell session *as a function*
+if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
+    source "$HOME/.rvm/scripts/rvm"
+fi
+
+#export PATH="/usr/local/sbin:$PATH"
+#export PATH="$PATH | awk ' !x[$0]++'"
+
+echo "$PATH"
+export PATH
+#export MANPATH
+export INFOPATH
+
+
+
+# Load RVM into a shell session *as a function*
+if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
+  source "$HOME/.rvm/scripts/rvm"
+fi
+
+#export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 echo "Running .profile"
