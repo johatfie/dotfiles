@@ -7,7 +7,7 @@
 #
 # First, include any system-wide bindings and variable
 # assignments from /etc/Inputrc
-$include /etc/Inputrc
+#$include /etc/Inputrc
 
 #
 # Set various bindings for vi mode.

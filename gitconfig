@@ -2,6 +2,10 @@
     name = Jon Hatfield
     email = jhatfield@salesforce.com
 
+[commit]
+    template = ~/.git_commit_template
+
+
 [filter "lfs"]
     clean = git lfs clean %f
     smudge = git lfs smudge %f
@@ -135,10 +139,11 @@
     wip = !git add -u && git commit -m "WIP"
     wipa = !git add -u && git amend
     visual = !gitk
+	server = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
 [core]
     excludesfile = /Users/jhatfield/.cvsignore
-    editor = mvim -v
+    editor = gvim
     autocrlf = input
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
@@ -189,3 +194,5 @@
 [mergetool "sourcetree"]
     cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
+[http]
+	postBuffer = 524288000

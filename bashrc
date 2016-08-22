@@ -77,8 +77,9 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
 # export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls' # Ignore the ls command as well
-#
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll' # Ignore the ls command as well
+
+
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
@@ -115,9 +116,11 @@ fi
 
 
 export COMPOSE_PROJECT_NAME=cobaltstarfish
-export AWS_ACCESS_KEY_ID=AKIAJNQA6Y6RX6VMI2DQ
-export AWS_SECRET_ACCESS_KEY=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
-export HOMEBREW_GITHUB_API_TOKEN="3ed07ccab1de3e6f710508d4be6e337d65728841"
+
+if [ -f "${HOME}/.salesforce_aws" ]; then
+  source "${HOME}/.salesforce_aws"
+fi
+
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 
