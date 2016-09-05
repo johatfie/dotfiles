@@ -1,9 +1,9 @@
 [user]
     name = Jon Hatfield
-    email = jhatfield@salesforce.com
+    email = johatfie@gmail.com
 
-[commit]
-    template = ~/.git_commit_template
+# [commit]
+#     template = ~/.git_commit_template
 
 
 [filter "lfs"]
@@ -142,7 +142,7 @@
 	server = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
 [core]
-    excludesfile = /Users/jhatfield/.cvsignore
+    excludesfile = ~/.cvsignore
     editor = gvim
     autocrlf = input
 
@@ -186,13 +186,11 @@
 
 [init]
     templatedir = ~/.gittemplate
-[gui]
-    recentrepo = /Users/jhatfield/projects/batchelor
-[difftool "sourcetree"]
-    cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-    path =
-[mergetool "sourcetree"]
-    cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-    trustExitCode = true
+# [difftool "sourcetree"]
+#     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+#     path =
+# [mergetool "sourcetree"]
+#     cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+#     trustExitCode = true
 [http]
 	postBuffer = 524288000
