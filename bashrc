@@ -114,13 +114,6 @@ if [ -f "${HOME}/.bash_functions" ]; then
 fi
 
 
-
-export COMPOSE_PROJECT_NAME=cobaltstarfish
-
-if [ -f "${HOME}/.salesforce_aws" ]; then
-  source "${HOME}/.salesforce_aws"
-fi
-
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 
