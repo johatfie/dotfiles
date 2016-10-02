@@ -25,9 +25,8 @@ alias wget='wget -c'                          # allow resuming downloads
 alias h='history | grep '
 alias clear='printf "\033c"'
 alias reload='source ~/.bashrc'
- alias cat='pygmentize -g'
- alias catln='pygmentize -g -O style=colorful,linenos=1'
-# alias update='brew update; brew upgrade'
+alias cat='pygmentize -g'
+alias catln='pygmentize -g -O style=colorful,linenos=1'
 # alias vim='mvim -v'
 # alias rmvim='mvim -S ~/Session.vim'
 # alias o='open -a'
@@ -66,9 +65,6 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 
 
-# Mac isms
-# alias vim=mvim
-
 ## pass options to free ##
 alias meminfo='free -m -l -t'
 
@@ -89,7 +85,7 @@ alias cpuinfo='lscpu'
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 
-# Salesforce related
+# Docker
 alias dm="docker-machine"
 alias fig="docker-compose"
 
