@@ -15,7 +15,6 @@ alias du='du -ch'
 
 # Misc :)
 alias alais=alias
-alias 'alias?'='alias | grep'
 alias less='less -r'                          # raw control characters
 alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
@@ -33,11 +32,17 @@ alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias 'ps?'='ps aux | grep'
 alias 'alias?'='alias | grep'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
-alias env='env | sort'
-alias virtualbox='virtualbox &'
+alias virtualbox='sudo virtualbox &'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
+#alias jgrep='~/scripts/jgrep'
+alias env='env | sort'
+alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias g='git'
+alias gc='git commit'
+alias gcv='git commit --no-verify'
+alias gst='git status'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -85,10 +90,10 @@ alias cpuinfo='lscpu'
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 
-# Docker
+# Docker related
 alias dm="docker-machine"
+alias dm_eval="eval \"\$(docker-machine env dev)\""
 alias fig="docker-compose"
-
 
 echo "Running .bash_aliases"
 
