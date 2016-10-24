@@ -26,8 +26,7 @@ alias h='history | grep '
 alias clear='printf "\033c"'
 alias reload='source ~/.bashrc'
 alias cat='pygmentize -g'
-# alias catln='pygmentize -g -O style=colorful,linenos=1'
-alias update='brew update; brew upgrade'
+alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias vim='vim -v'
 alias rmvim='vim -S ~/Session.vim'
 alias o='open -a'
@@ -46,7 +45,7 @@ alias gst='git status'
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Some shortcuts for different directory listings
-alias ls='ls -hFpG'                           # classify files in colour
+alias ls='ls -hFpG --color'                           # classify files in colour
 # alias dir='ls --color=auto --format=vertical'
 # alias vdir='ls --color=auto --format=long'
 # alias dir='ls --format=vertical'
@@ -68,9 +67,6 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
 
 
-# Mac isms
-# alias vim=mvim
-
 ## pass options to free ##
 alias meminfo='free -m -l -t'
 
@@ -90,4 +86,12 @@ alias cpuinfo='lscpu'
 
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep memory /var/log/Xorg.0.log'
+
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 

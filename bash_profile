@@ -28,10 +28,6 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
-# if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-#   . "$(brew --prefix)/share/bash-completion/bash_completion"
-# fi
-
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
@@ -55,16 +51,7 @@ fi
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 export PATH="/usr/local/sbin:$PATH"
 PATH=path | awk ' !x[$0]++'
 
-##
-# Your previous /Users/jhatfield/.bash_profile file was backed up as /Users/jhatfield/.bash_profile.macports-saved_2016-04-19_at_19:25:32
-##
-
-# MacPorts Installer addition on 2016-04-19_at_19:25:32: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

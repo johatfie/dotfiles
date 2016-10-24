@@ -49,6 +49,17 @@ shopt -s histappend
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
 
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 # Completion options
 #
 # These completion tuning parameters change the default behavior of bash_completion:
@@ -64,7 +75,19 @@ shopt -s cdspell
 #
 # Uncomment to turn on programmable completion enhancements.
 # Any completions you add in ~/.bash_completion are sourced last.
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
 
 complete -d cd
 
@@ -83,7 +106,7 @@ export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll' # Ignore the ls command as
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
-export HISTTIMEFORMAT="%F  %T  "
+# export HISTTIMEFORMAT="%F  %T  "
 
 
 export HISTFILESIZE=30000000    # save 300000 commands
@@ -114,11 +137,22 @@ if [ -f "${HOME}/.bash_functions" ]; then
 fi
 
 
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# run any scheduled installers
+if [ -e ~/bin/auto_install.sh ]; then
+    ~/bin/auto_install.sh
+fi
 
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+export GRAILS_HOME=/opt/grails-2.4.2
+export PATH=$PATH:/repository/devtools/local:/repository/devtools/bin:$GRAILS_HOME/bin
 
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+/home/jhatfield/bin/postgres_startup.sh
 
-#  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+PATH=path | awk ' !x[$0]++'
 
 echo "Running .bashrc"
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/jhatfield/.sdkman"
+[[ -s "/home/jhatfield/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jhatfield/.sdkman/bin/sdkman-init.sh"
