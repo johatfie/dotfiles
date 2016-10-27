@@ -1,9 +1,9 @@
 [user]
-    name = Jon Hatfield
-    email = johatfie@gmail.com
+    name = jh-stratice
+    email = jhatfield@stratice.com
 
-# [commit]
-#     template = ~/.git_commit_template
+[commit]
+    template = ~/.git_commit_template
 
 
 [filter "lfs"]
@@ -23,12 +23,12 @@
     name = perforce merge driver
     driver = ~/merge_driver %A %O %B
 
-[mergetool "p4merge"]
-    ;path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
-    keepTemporaries = false
-    ;trustExitCode = false
-    ;keepBackup = false
+#[mergetool "p4merge"]
+    #;path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
+    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
+    #keepTemporaries = false
+    #;trustExitCode = false
+    #;keepBackup = false
 
 [mergetool "p4mergetool"]
     trustExitCode = false
@@ -43,16 +43,16 @@
 [diff]
     tool = p4merge
 
-[difftool "mvim"]
-    # TODO: doesn't work
-    cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
+#[difftool "mvim"]
+    ## TODO: doesn't work
+    #cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
 
-[difftool "p4merge"]
-    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
-    ;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
-    keepTemporaries = false
-    trustExitCode = false
-    keepBackup = false
+#[difftool "p4merge"]
+    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+    #;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
+    #keepTemporaries = false
+    #trustExitCode = false
+    #keepBackup = false
 
 [difftool]
     keepBackup = false

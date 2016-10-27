@@ -102,7 +102,7 @@ man_func ()
         man "$@"
 }
 
-alias man=man_func
+#alias man=man_func
 
 # function cat_color_function
 # Syntax highlighting in cat
