@@ -142,7 +142,7 @@ if [ -e ~/bin/auto_install.sh ]; then
     ~/bin/auto_install.sh
 fi
 
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle
 export GRAILS_HOME=/opt/grails-2.4.2
 export PATH=$PATH:/repository/devtools/local:/repository/devtools/bin:$GRAILS_HOME/bin
 
