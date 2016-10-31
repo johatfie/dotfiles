@@ -1,5 +1,5 @@
 [user]
-    name = jh-stratice
+    name = Jon Hatfield
     email = jhatfield@stratice.com
 
 [commit]
@@ -143,7 +143,7 @@
 
 [core]
     excludesfile = ~/.cvsignore
-    editor = gvim
+    editor = vim
     autocrlf = input
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
