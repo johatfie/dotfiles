@@ -99,6 +99,7 @@
 [alias]
     a = add
 
+    #alias = "!f() {git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /}; f"
     ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not master"
 
     # Amend the currently staged files to the latest commit
