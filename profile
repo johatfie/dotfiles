@@ -93,3 +93,7 @@ fi
 
 #export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 echo "Running .profile"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/usr/home/jon/.sdkman"
+[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
