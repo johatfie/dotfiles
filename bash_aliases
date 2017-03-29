@@ -30,7 +30,7 @@ alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias vim='vim -v'
 alias rmvim='vim -S ~/Session.vim'
 alias o='open -a'
-alias 'ps?'='ps aux | grep'
+alias 'ps?'='ps aux | head -1; ps aux | grep'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
 alias jgrep='~/scripts/jgrep'
@@ -41,6 +41,7 @@ alias g='git'
 alias gc='git commit'
 alias gcv='git commit --no-verify'
 alias gst='git status'
+alias git='hub'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'

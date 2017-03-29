@@ -100,7 +100,7 @@
     a = add
 
     #alias = "!f() {git config --get-regexp ^alias\. | sed -e s/^alias\.// -e s/\ /\ =\ /}; f"
-    ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not master"
+    ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not dev"
 
     # Amend the currently staged files to the latest commit
     amend = commit --amend --reuse-message=HEAD
@@ -108,7 +108,7 @@
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
 
-    behind = "!git log -p master --not $(git rev-parse --abbrev-ref HEAD)"
+    behind = "!git log -p dev --not $(git rev-parse --abbrev-ref HEAD)"
     br = branch
     ci = commit
     cm = !git add -A && git commit -m
@@ -195,3 +195,5 @@
 #     trustExitCode = true
 [http]
     postBuffer = 524288000
+[push]
+	default = simple
