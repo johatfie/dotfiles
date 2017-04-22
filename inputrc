@@ -46,6 +46,8 @@ $if mode=vi
     "jj": vi-movement-mode
     #"\C-w": backward-kill-word
     #"\C-p": history-search-backward
+    set vi-ins-mode-string "+"
+    set vi-cmd-mode-string ":"
 $endif
 
 # Make Tab autocomplete regardless of filename case
