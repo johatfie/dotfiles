@@ -108,6 +108,7 @@ man_func ()
 ps_grep ()
 {
     args=$@;
+    ps aux | head -1;
     ps aux | grep [${args:0:1}]${args:1};
 }
 

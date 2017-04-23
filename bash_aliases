@@ -21,7 +21,8 @@ alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
 alias wget='wget -c'                          # allow resuming downloads
-alias h='history | grep '
+alias h='history'
+alias 'h?'='history | grep'
 alias clear='printf "\033c"'
 alias reload='source ~/.bashrc'
 alias cat='pygmentize -g'
@@ -29,15 +30,16 @@ alias catln='pygmentize -g -O style=colorful,linenos=1'
 # alias vim='mvim -v'
 # alias rmvim='mvim -S ~/Session.vim'
 # alias o='open -a'
-alias 'ps?'='ps aux | grep'
+alias 'ps?'='ps_grep'
 alias 'alias?'='alias | grep'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 alias virtualbox='sudo virtualbox &'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
-#alias jgrep='~/scripts/jgrep'
+alias jgrep='~/scripts/jgrep'
 alias env='env | sort'
+alias 'env?'='env | grep'
 alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
 alias g='git'
 alias gc='git commit'
@@ -66,9 +68,12 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
+alias ......='cd ../../../../../'
+alias .......='cd ../../../../../../'
 alias .4='cd ../../../../'
 alias .5='cd ../../../../..'
-
+alias .6='cd ../../../../../'
+alias .7='cd ../../../../../../'
 
 ## pass options to free ##
 alias meminfo='free -m -l -t'
