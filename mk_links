@@ -1,21 +1,23 @@
+#!/usr/bin/env bash
+
 cd
 
-[[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles/bash_aliases
-[[ ! -f .bash_functions ]] && mv .bash_functions ~/.dotfiles/bash_functions
-[[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles/bash_logout
-[[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles/bash_profile
-[[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles/bashrc
-[[ ! -f .crontab        ]] && mv .crontab        ~/.dotfiles/crontab
-[[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles/curlrc
-[[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles/cvsignore
-[[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles/gitconfig
-[[ ! -f .inputrc        ]] && mv .inputrc        ~/.dotfiles/inputrc
-[[ ! -f .irbrc          ]] && mv .irbrc          ~/.dotfiles/irbrc
-[[ ! -f .mkshrc         ]] && mv .mkshrc         ~/.dotfiles/mkshrc
-[[ ! -f .profile        ]] && mv .profile        ~/.dotfiles/profile
-[[ ! -f .rvmrc          ]] && mv .rvmrc          ~/.dotfiles/rvmrc
-[[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles/zlogin
-[[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles/zshrc
+[[ ! -f .bash_aliases   ]] && mv .bash_aliases   .bash_aliases.bak
+[[ ! -f .bash_functions ]] && mv .bash_functions .bash_functions.bak
+[[ ! -f .bash_logout    ]] && mv .bash_logout    .bash_logout.bak
+[[ ! -f .bash_profile   ]] && mv .bash_profile   .bash_profile.bak
+[[ ! -f .bashrc         ]] && mv .bashrc         .bashrc.bak
+[[ ! -f .crontab        ]] && mv .crontab        .crontab.bak
+[[ ! -f .curlrc         ]] && mv .curlrc         .curlrc.bak
+[[ ! -f .cvsignore      ]] && mv .cvsignore      .cvsignore.bak
+[[ ! -f .gitconfig      ]] && mv .gitconfig      .gitconfig.bak
+[[ ! -f .inputrc        ]] && mv .inputrc        .inputrc.bak
+[[ ! -f .irbrc          ]] && mv .irbrc          .irbrc.bak
+[[ ! -f .mkshrc         ]] && mv .mkshrc         .mkshrc.bak
+[[ ! -f .profile        ]] && mv .profile        .profile.bak
+[[ ! -f .rvmrc          ]] && mv .rvmrc          .rvmrc.bak
+[[ ! -f .zlogin         ]] && mv .zlogin         .zlogin.bak
+[[ ! -f .zshrc          ]] && mv .zshrc          .zshrc.bak
 
 
 ln -s ~/.dotfiles/bash_aliases   ~/.bash_aliases
