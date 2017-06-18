@@ -67,6 +67,22 @@ shopt -s cdspell
 # Any completions you add in ~/.bash_completion are sourced last.
 [[ -f /etc/bash_completion ]] && . /etc/bash_completion
 
+# Load all autocompletions if any are installed
+if [ -d /usr/local/etc/bash_completion.d ]; then
+    for F in "/usr/local/etc/bash_completion.d/"*; do
+        if [ -f "${F}" ]; then
+            source "${F}";
+        fi
+    done
+fi
+
+if [ -f /usr/local/etc/bash_completion.d/git.sh ]; then
+    # Add git completion to aliases
+    __git_complete gco _git_checkout
+    __git_complete g __git_main
+    __git_complete gm __git_merge
+fi
+
 complete -d cd
 
 # History Options

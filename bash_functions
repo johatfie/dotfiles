@@ -223,6 +223,8 @@ LIGHT_GRAY="\[\033[0;37m\]"
 
 
 function prompt_command () {
+    history -a
+
     branch=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 
     if [ "$branch" == "" ]; then
