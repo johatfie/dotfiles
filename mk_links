@@ -1,3 +1,5 @@
+# #!/usr/bin/env bash
+
 cd
 
 [[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles/bash_aliases
