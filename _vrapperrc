@@ -1,0 +1,72 @@
+    set smartindent
+    set autoindent
+    set ignorecase
+    set smartcase
+    set hlsearch
+    set incsearch                  " do incremental searching
+    set number                     " show line numbers
+    set cursorline                  " highlight current line
+    set autochdir                   " Automatically cd to directory of open file
+    set scrolloff=3                 " keep at least 3 lines above/below
+    set softtabstop=4               " number of spaces in tab when editing
+    set tabstop=4                   " number of visual spaces per TAB
+    set expandtab                   " tabs are spaces
+    set shiftwidth=4
+
+
+" Braces and Quotes {{{
+
+    " This is the way I like my quotation marks and various braces
+    inoremap '' ''<Left>
+    inoremap "" ""<Left>
+    inoremap <> <><Left>
+    inoremap // //<Left>
+    inoremap {} {  }<Left><Left>
+    inoremap [] []<Left>
+    inoremap () ()<Left>
+    "inoremap {} {}<Left>
+    "inoremap [] []<Left>
+    "inoremap () ()<Left>
+    inoremap %% %%<Left>
+    inoremap `` ``<Left>
+
+    cnoremap '' ''<Left>
+    cnoremap "" ""<Left>
+    cnoremap <> <><Left>
+    cnoremap // //<Left>
+    cnoremap {} {}<Left>
+    cnoremap [] []<Left>
+    cnoremap () ()<Left>
+
+" }}}
+
+" Maps {{{
+
+    " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
+    nnoremap ; :
+    nnoremap : ;
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+
+    " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+    inoremap jj <Esc>
+
+    " Create Blank Newlines and stay in Normal mode
+    nnoremap <silent> zj o<Esc>
+    nnoremap <silent> zk O<Esc>
+
+    nnoremap <silent> zJ zj
+    nnoremap <silent> zK zk
+
+    " Don't use Ex mode, use Q for formatting
+    map Q gq
+
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap gj j
+    nnoremap gk k
+    "vnoremap y "+y
+
+" }}}
