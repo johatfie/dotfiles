@@ -2,8 +2,8 @@
     name = jh-stratice
     email = jhatfield@stratice.com
 
-[commit]
-    template = ~/.git_commit_template
+#[commit]
+#    template = ~/.git_commit_template
 
 
 [filter "lfs"]
@@ -143,7 +143,7 @@
 
 [core]
     excludesfile = ~/.cvsignore
-    editor = gvim
+    editor = vim
     autocrlf = input
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
