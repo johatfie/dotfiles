@@ -1,6 +1,6 @@
 [user]
-    name = jh-stratice
-    email = jhatfield@stratice.com
+    name = jh-tccrocks
+    email = jhatfield@tccrocks.com
 
 #[commit]
 #    template = ~/.git_commit_template
@@ -19,18 +19,23 @@
     # Include summaries of merged commits in newly created merge commit messages
     log = true
 
-[merge "pmerge"]
-    name = perforce merge driver
-    driver = ~/merge_driver %A %O %B
+#[merge "pmerge"]
+    #name = perforce merge driver
+    #driver = ~/merge_driver %A %O %B
 
 #[mergetool "p4merge"]
     #;path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
+    #path = /usr/bin/p4merge
     #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
+    #cmd = p4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
+    #cmd = 'p4merge $BASE $LOCAL $REMOTE $MERGED'
     #keepTemporaries = false
     #;trustExitCode = false
     #;keepBackup = false
 
-[mergetool "p4mergetool"]
+[mergetool "p4merge"]
+    path = "c:/Program Files/Perforce/p4merge.exe"
+    cmd = "p4merge `cygpath -w $BASE` `cygpath -w $LOCAL` `cygpath -w $REMOTE` `cygpath -w $MERGED`"
     trustExitCode = false
 
 [mergetool]
@@ -47,9 +52,12 @@
     ## TODO: doesn't work
     #cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
 
-#[difftool "p4merge"]
+[difftool "p4merge"]
     #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
     #;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
+    #;cmd = /usr/bin/p4merge ""\"$REMOTE\"" "\"$LOCAL\""
+    cmd = /usr/bin/p4merge `cygpath -asm $LOCAL`  `cygpath -asm $REMOTE`
+    #cmd = 'p4merge $BASE $LOCAL $REMOTE $MERGED'
     #keepTemporaries = false
     #trustExitCode = false
     #keepBackup = false
