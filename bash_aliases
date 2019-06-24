@@ -22,7 +22,7 @@ alias grep='grep --color'                     # show differences in colour
 alias egrep='egrep --color=auto'              # show differences in colour
 alias fgrep='fgrep --color=auto'              # show differences in colour
 alias wget='wget -c'                          # allow resuming downloads
-alias h='history | grep '
+alias h?='history | grep '
 alias clear='printf "\033c"'
 alias reload='source ~/.bashrc'
 alias cat='pygmentize -g'
@@ -97,3 +97,6 @@ alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+# echo "Running .bash_aliases"
+
+# vim ft=sh

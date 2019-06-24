@@ -60,3 +60,7 @@ PATH=path | awk ' !x[$0]++'
 #[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# echo "Running .bash_profile"
+
+# vim ft=sh

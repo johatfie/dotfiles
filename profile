@@ -35,7 +35,7 @@
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #
 #
-# echo "Running .profile"
+echo "Running .profile"
 
 
 export PATH=/usr/local/bin:$PATH
@@ -43,3 +43,5 @@ export PATH="~/.bundler_binstubs:$PATH"
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# vim ft=sh
