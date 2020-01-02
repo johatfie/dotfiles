@@ -14,40 +14,40 @@ alias df='df -h'
 alias du='du -ch'
 
 # Misc :)
-alias alais=alias
 alias 'alias?'='alias | grep'
-alias less='less -r'                          # raw control characters
-alias whence='type -a'                        # where, of a sort
-alias grep='grep --color'                     # show differences in colour
-alias egrep='egrep --color=auto'              # show differences in colour
-alias fgrep='fgrep --color=auto'              # show differences in colour
-alias wget='wget -c'                          # allow resuming downloads
-alias h?='history | grep '
-alias clear='printf "\033c"'
-alias reload='source ~/.bashrc'
+alias 'ps?'='ps_grep'
+alias alais=alias
+alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 alias cat='pygmentize -g'
 alias catln='pygmentize -g -O style=colorful,linenos=1'
-alias vim='vim -v'
-alias rmvim='vim -S ~/Session.vim'
-alias o='open -a'
-alias 'ps?'='ps_grep'
-alias 'alias?'='alias | grep'
-alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
-alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
-alias jgrep='~/scripts/jgrep'
+alias clear='printf "\033c"'
+alias egrep='egrep --color=auto'              # show differences in colour
 alias env='env | sort'
-alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias fgrep='fgrep --color=auto'              # show differences in colour
 alias g='git'
 alias gc='git commit'
 alias gcv='git commit --no-verify'
+alias grep='grep --color'                     # show differences in colour
 alias gst='git status'
+alias h?='history | grep'
+alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias java11='export JAVA_HOME=$(/usr/libexec/java_home -v 11)'
+alias jgrep='~/scripts/jgrep'
+alias less='less -r'                          # raw control characters
+alias o='open -a'
+alias reload='source ~/.bash_profile'
+alias rmvim='vim -S ~/Session.vim'
+alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
+alias vim='vim -v'
+alias wget='wget -c'                          # allow resuming downloads
+alias whence='type -a'                        # where, of a sort
 alias winhome='cd `cygpath C:/Users/filis`'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
 
 # Some shortcuts for different directory listings
-alias ls='ls -hFpG --color'                           # classify files in colour
+alias ls='ls -hFpG'                           # classify files in colour
 # alias dir='ls --color=auto --format=vertical'
 # alias vdir='ls --color=auto --format=long'
 # alias dir='ls --format=vertical'
