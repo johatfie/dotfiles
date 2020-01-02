@@ -41,7 +41,7 @@ set -o vi
 
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
-#
+
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 
@@ -85,6 +85,8 @@ if ! shopt -oq posix; then
     . /usr/share/bash-completion/bash_completion
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+  elif [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    . "/usr/local/etc/profile.d/bash_completion.sh"
   fi
 fi
 
@@ -92,15 +94,15 @@ fi
 complete -d cd
 
 # History Options
-#
+
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
+
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
 # export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll' # Ignore the ls command as well
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll:hdel' # Ignore the ls command as well
 
 
 # Whenever displaying the prompt, write the previous line to disk
