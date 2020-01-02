@@ -17,7 +17,7 @@
 # # if [ -n "$BASH_VERSION" ]; then
 # #     # include .bashrc if it exists
 # #     if [ -f "$HOME/.bashrc" ]; then
-# # 	. "$HOME/.bashrc"
+# #     . "$HOME/.bashrc"
 # #     fi
 # # fi
 #
@@ -35,13 +35,17 @@
 # [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 #
 #
+
+
+#if [ -d /usr/local/bin ] ; then
+    #export PATH=/usr/local/bin:$PATH
+#fi
+
+if [ -d $HOME/.bundler_binstubs ] ; then
+    export PATH="~/.bundler_binstubs:$PATH"     # I don't remember what this was for, but now it's enclosed in an if block
+fi
+
+
 echo "Running .profile"
-
-
-export PATH=/usr/local/bin:$PATH
-export PATH="~/.bundler_binstubs:$PATH"
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # vim ft=sh
