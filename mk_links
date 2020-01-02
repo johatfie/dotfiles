@@ -2,23 +2,43 @@
 
 cd
 
-[[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles/bash_aliases
-[[ ! -f .bash_functions ]] && mv .bash_functions ~/.dotfiles/bash_functions
-[[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles/bash_logout
-[[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles/bash_profile
-[[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles/bashrc
-[[ ! -f .crontab        ]] && mv .crontab        ~/.dotfiles/crontab
-[[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles/curlrc
-[[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles/cvsignore
-[[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles/gitconfig
-[[ ! -f .inputrc        ]] && mv .inputrc        ~/.dotfiles/inputrc
-[[ ! -f .irbrc          ]] && mv .irbrc          ~/.dotfiles/irbrc
-[[ ! -f .mkshrc         ]] && mv .mkshrc         ~/.dotfiles/mkshrc
-[[ ! -f .profile        ]] && mv .profile        ~/.dotfiles/profile
-[[ ! -f .rvmrc          ]] && mv .rvmrc          ~/.dotfiles/rvmrc
-[[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles/zlogin
-[[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles/zshrc
+#[[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles/bash_aliases
+#[[ ! -f .bash_functions ]] && mv .bash_functions ~/.dotfiles/bash_functions
+#[[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles/bash_logout
+#[[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles/bash_profile
+#[[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles/bashrc
+#[[ ! -f .crontab        ]] && mv .crontab        ~/.dotfiles/crontab
+#[[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles/curlrc
+#[[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles/cvsignore
+#[[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles/gitconfig
+#[[ ! -f .inputrc        ]] && mv .inputrc        ~/.dotfiles/inputrc
+#[[ ! -f .irbrc          ]] && mv .irbrc          ~/.dotfiles/irbrc
+#[[ ! -f .mkshrc         ]] && mv .mkshrc         ~/.dotfiles/mkshrc
+#[[ ! -f .profile        ]] && mv .profile        ~/.dotfiles/profile
+#[[ ! -f .rvmrc          ]] && mv .rvmrc          ~/.dotfiles/rvmrc
+#[[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles/zlogin
+#[[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles/zshrc
 
+mkdir .dotfiles_orig
+
+[[ ! -f .bash_aliases   ]] && mv .bash_aliases   ~/.dotfiles_orig/.bash_aliases_orig
+[[ ! -f .bash_functions ]] && mv .bash_functions ~/.dotfiles_orig/.bash_functions_orig
+[[ ! -f .bash_logout    ]] && mv .bash_logout    ~/.dotfiles_orig/.bash_logout_orig
+[[ ! -f .bash_profile   ]] && mv .bash_profile   ~/.dotfiles_orig/.bash_profile_orig
+[[ ! -f .bashrc         ]] && mv .bashrc         ~/.dotfiles_orig/.bashrc_orig
+[[ ! -f .crontab        ]] && mv .crontab        ~/.dotfiles_orig/.crontab_orig
+[[ ! -f .curlrc         ]] && mv .curlrc         ~/.dotfiles_orig/.curlrc_orig
+[[ ! -f .cvsignore      ]] && mv .cvsignore      ~/.dotfiles_orig/.cvsignore_orig
+[[ ! -f .gitconfig      ]] && mv .gitconfig      ~/.dotfiles_orig/.gitconfig_orig
+[[ ! -f .inputrc        ]] && mv .inputrc        ~/.dotfiles_orig/.inputrc_orig
+[[ ! -f .irbrc          ]] && mv .irbrc          ~/.dotfiles_orig/.irbrc_orig
+[[ ! -f .mkshrc         ]] && mv .mkshrc         ~/.dotfiles_orig/.mkshrc_orig
+[[ ! -f .profile        ]] && mv .profile        ~/.dotfiles_orig/.profile_orig
+[[ ! -f .rvmrc          ]] && mv .rvmrc          ~/.dotfiles_orig/.rvmrc_orig
+[[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles_orig/.zlogin_orig
+[[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles_orig/.zshrc_orig
+
+rmdir ~/.dotfiles_orig
 
 ln -s ~/.dotfiles/bash_aliases   ~/.bash_aliases
 ln -s ~/.dotfiles/bash_functions ~/.bash_functions
