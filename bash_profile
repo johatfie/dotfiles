@@ -21,6 +21,10 @@
 # would be benifitial to all, please feel free to send
 # a patch to the cygwin mailing list.
 
+# If not running interactively, don't do anything
+[[ "$-" != *i* ]] && return
+
+
 # User dependent .bash_profile file
 
 # source the users bashrc if it exists
