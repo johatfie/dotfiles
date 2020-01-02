@@ -3,8 +3,8 @@
     set ignorecase
     set smartcase
     set hlsearch
-    set incsearch                  " do incremental searching
-    set number                     " show line numbers
+    set incsearch                   " do incremental searching
+    set number                      " show line numbers
     set cursorline                  " highlight current line
     set autochdir                   " Automatically cd to directory of open file
     set scrolloff=3                 " keep at least 3 lines above/below
