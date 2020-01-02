@@ -190,6 +190,37 @@ function extract {
     fi
 }
 
+
+# Appriss specific functions
+
+function adfs_reset () {
+    echo aws-adfs reset
+    aws-adfs reset
+
+    echo unset AWS_DEFAULT_PROFILE
+    unset AWS_DEFAULT_PROFILE
+
+    echo aws configure --profile 'default'
+    aws configure --profile 'default'
+}
+
+function kbecd() {
+    kb exec -it $1 -n clinical-alerts-dev -- /bin/bash
+}
+
+function kbecq() {
+    kb exec -it $1 -n clinical-alerts-qa -- /bin/bash
+}
+
+function kbefd() {
+    kb exec -it "$1" -n fhir-dev -- /bin/bash
+}
+
+function kbefq() {
+    kb exec -it "$1" -n fhir-qa -- /bin/bash
+}
+
+
 # echo "Running .bash_functions"
 
 # vim ft=sh

@@ -62,6 +62,33 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+
+# Appriss specific
+export VAULT_ADDR=https://vault.hc.appriss.com
+#export AWS_DEFAULT_PROFILE=adfs
+export KUBECONFIG="${HOME}/.kube/lz_config"
+export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+# Set PATH so it includes AWS command line utilities
+if [ -d "${HOME}/Applications" ] ; then
+  PATH="${HOME}/Library/Python/3.7/bin:${PATH}"
+fi
+
+export PATH=/Library/PostgreSQL/9.6/bin:$PATH
+export PGDATA=/Library/PostgreSQL/9.6/data
+export PGDATABASE=postgres
+export PGUSER=postgres
+export PGPORT=5432
+export PGLOCALEDIR=/Library/PostgreSQL/9.6/share/locale
+export MANPATH=$MANPATH:/Library/PostgreSQL/9.6/share/man
+
+eval "$(rbenv init -)"
+eval "$(direnv hook bash)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 # PATH=path | awk ' !x[$0]++'
 export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
 
@@ -70,7 +97,6 @@ echo "Running .bash_profile"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 #export SDKMAN_DIR="/usr/home/jon/.sdkman"
 #[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
-
 
 
 # vim ft=sh

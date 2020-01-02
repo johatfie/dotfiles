@@ -151,6 +151,11 @@ fi
 # PATH=path | awk ' !x[$0]++'
 
 bind 'Space: magic-space'
+
+# Appriss specific
+complete -C /usr/local/bin/vault vault
+
+
 echo "Running .bashrc"
 
 

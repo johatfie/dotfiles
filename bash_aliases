@@ -98,6 +98,34 @@ alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias alert='terminal-notifier -message "Command finished"; say command finished'
 
+# Appriss specific
+alias vault_new='export VAULT_ADDR=https://dbvault.hc.appriss.com'
+alias vault_old='export VAULT_ADDR=https://vault.hc.appriss.com'
+alias be="bundle exec"
+alias kb="kubectl"
+alias kx="kubectx"
+# alias fhir_pods="kb get pods --all-namespaces | grep fhir"
+# alias ca_pods="kb get pods --all-namespaces | grep clinical-alerts"
+alias adfs="aws-adfs login --adfs-host=adfs.appriss.com --no-sspi"
+alias kube_new="export KUBECONFIG='/Users/jhatfield/.kube/lz_config'"
+alias kube_old="export KUBECONFIG='/Users/jhatfield/.kube/config'"
+#alias adfs_reset="aws-adfs reset &; unset AWS_DEFAULT_PROFILE &; aws configure --profile 'default'"
+
+alias ca_pods="kb get pods --all-namespaces | awk 'NR == 1 || /clinical-alerts/'"
+alias fhir_pods="kb get pods --all-namespaces | awk 'NR == 1 || /fhir/'"
+
+alias kbdpfd="kb delete pod $@ -n fhir-dev"
+alias kbdpfq="kb delete pod $@ -n fhir-qa"
+alias kbdpcd="kb delete pod $@ -n clinical-alerts-dev"
+alias kbdpcq="kb delete pod $@ -n clinical-alerts-qa"
+alias kbdpcp="kb delete pod $@ -n clinical-alerts-prep"
+
+alias kblfd="kb logs -f $@ -n fhir-dev -c appriss-fhir-integrator"
+alias kblfq="kb logs -f $@ -n fhir-qa -c appriss-fhir-integrator"
+alias kblcd="kb logs -f $@ -n clinical-alerts-dev -c clinical-alerts-service"
+alias kblcq="kb logs -f $@ -n clinical-alerts-qa -c clinical-alerts-service"
+alias kblcp="kb logs -f $@ -n clinical-alerts-prep -c clinical-alerts-service"
+
 # echo "Running .bash_aliases"
 
 # vim ft=sh
