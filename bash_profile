@@ -32,6 +32,7 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+# Set PATH so it includes Homebrew's sbin if it exists
 if [ -d /usr/local/sbin ]; then
     export PATH="/usr/local/sbin:$PATH"
 fi
