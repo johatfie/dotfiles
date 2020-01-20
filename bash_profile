@@ -32,6 +32,10 @@ if [ -f "${HOME}/.bashrc" ] ; then
   source "${HOME}/.bashrc"
 fi
 
+if [ -d /usr/local/sbin ]; then
+    export PATH="/usr/local/sbin:$PATH"
+fi
+
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
   PATH="${HOME}/bin:${PATH}"
@@ -56,21 +60,12 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-#if [ -d /usr/local/sbin ]; then
-    #export PATH="/usr/local/sbin:$PATH"
-#fi
-
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # PATH=path | awk ' !x[$0]++'
 export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
 
 echo "Running .bash_profile"
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-#export SDKMAN_DIR="/usr/home/jon/.sdkman"
-#[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
-
 
 
 # vim ft=sh

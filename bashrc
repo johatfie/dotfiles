@@ -146,18 +146,10 @@ if [ -e ~/bin/auto_install.sh ]; then
 fi
 
 # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
-# export GRAILS_HOME=/opt/grails-2.4.2
-# export PATH=$PATH:/repository/devtools/local:/repository/devtools/bin:$GRAILS_HOME/bin
 
-# PATH=path | awk ' !x[$0]++'
 
 bind 'Space: magic-space'
 
 echo "Running .bashrc"
-
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-# export SDKMAN_DIR="/home/jhatfield/.sdkman"
-# [[ -s "/home/jhatfield/.sdkman/bin/sdkman-init.sh" ]] && source "/home/jhatfield/.sdkman/bin/sdkman-init.sh"
 
 # vim ft=sh
