@@ -87,11 +87,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   elif [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
     . "/usr/local/etc/profile.d/bash_completion.sh"
+    echo ". /usr/local/etc/profile.d/bash_completion.sh"
   fi
 fi
 
 
-complete -d cd
+# complete -d cd
 
 # History Options
 
@@ -151,6 +152,7 @@ fi
 # PATH=path | awk ' !x[$0]++'
 
 bind 'Space: magic-space'
+
 echo "Running .bashrc"
 
 

@@ -91,7 +91,7 @@ alias cdf=cd_finder_func
 # Get colors in manual pages
 man_func ()
 {
-    env \
+    \env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
         LESS_TERMCAP_md=$(printf "\e[1;31m") \
         LESS_TERMCAP_me=$(printf "\e[0m") \
@@ -100,9 +100,9 @@ man_func ()
         LESS_TERMCAP_ue=$(printf "\e[0m") \
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
-    }
+}
 
-#alias man=man_func
+alias man=man_func
 
 ps_grep ()
 {
@@ -156,7 +156,20 @@ function prompt_command () {
     fi
 }
 
-PROMPT_COMMAND=prompt_command
+function log_command_to_permanent_history () {
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log
+    fi
+}
+
+function combined_prompt () {
+    log_command_to_permanent_history
+    prompt_command
+}
+
+#PROMPT_COMMAND=prompt_command
+#export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi';prompt_command
+export PROMPT_COMMAND=combined_prompt
 
 function extract {
     if [ -z "$1" ]; then
