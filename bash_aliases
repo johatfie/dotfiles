@@ -113,18 +113,21 @@ alias kube_old="export KUBECONFIG='/Users/jhatfield/.kube/config'"
 
 alias ca_pods="kb get pods --all-namespaces | awk 'NR == 1 || /clinical-alerts/'"
 alias fhir_pods="kb get pods --all-namespaces | awk 'NR == 1 || /fhir/'"
+alias nr_pods="kb get pods --all-namespaces | awk 'NR == 1 || /narxcare-reports/'"
 
-alias kbdpfd="kb delete pod $@ -n fhir-dev"
-alias kbdpfq="kb delete pod $@ -n fhir-qa"
 alias kbdpcd="kb delete pod $@ -n clinical-alerts-dev"
 alias kbdpcq="kb delete pod $@ -n clinical-alerts-qa"
 alias kbdpcp="kb delete pod $@ -n clinical-alerts-prep"
+alias kbdpfd="kb delete pod $@ -n fhir-dev"
+alias kbdpfq="kb delete pod $@ -n fhir-qa"
+alias kbdpnrd="kb delete pod $@ -n pmp-dev"
+alias kbdpnrq="kb delete pod $@ -n pmp-qa"
 
-alias kblfd="kb logs -f $@ -n fhir-dev -c appriss-fhir-integrator"
-alias kblfq="kb logs -f $@ -n fhir-qa -c appriss-fhir-integrator"
-alias kblcd="kb logs -f $@ -n clinical-alerts-dev -c clinical-alerts-service"
-alias kblcq="kb logs -f $@ -n clinical-alerts-qa -c clinical-alerts-service"
-alias kblcp="kb logs -f $@ -n clinical-alerts-prep -c clinical-alerts-service"
+# alias kblfd="kb logs -f $@ -n fhir-dev -c appriss-fhir-integrator"
+# alias kblfq="kb logs -f $@ -n fhir-qa -c appriss-fhir-integrator"
+# alias kblcd="kb logs -f $@ -n clinical-alerts-dev -c clinical-alerts-service"
+# alias kblcq="kb logs -f $@ -n clinical-alerts-qa -c clinical-alerts-service"
+# alias kblcp="kb logs -f $@ -n clinical-alerts-prep -c clinical-alerts-service"
 
 # echo "Running .bash_aliases"
 

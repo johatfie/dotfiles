@@ -220,6 +220,14 @@ function kbefq() {
     kb exec -it "$1" -n fhir-qa -- /bin/bash
 }
 
+function kbenrd() {
+    kb exec -it $1 -n pmp-dev -- /bin/bash
+}
+
+function kbenrq() {
+    kb exec -it $1 -n pmp-qa -- /bin/bash
+}
+
 
 # echo "Running .bash_functions"
 
