@@ -7,7 +7,8 @@ settitle ()
 }
 
 function defaults ()
-{ echo defaults "$@" >> ~/Documents/defaults.txt
+{
+    echo defaults "$@" >> ~/Documents/defaults.txt
     /usr/bin/defaults "$@"
 }
 
