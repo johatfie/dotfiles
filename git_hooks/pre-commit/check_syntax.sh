@@ -128,6 +128,6 @@ case "${1}" in
         echo "Check Ruby files for syntax errors."
         ;;
     * )
-        main "$@"
+        main -s "$@"
         ;;
 esac
