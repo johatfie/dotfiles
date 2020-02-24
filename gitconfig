@@ -7,10 +7,10 @@
 
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
+    process = git-lfs filter-process
 
 
 [merge]
@@ -111,7 +111,7 @@
     ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not master"
 
     # Amend the currently staged files to the latest commit
-    amend = commit --amend --reuse-message=HEAD
+    amend = commit --amend --reuse-message=HEAD --date="$(date -R)"
 
     # list branches sorted by last modified
     b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
