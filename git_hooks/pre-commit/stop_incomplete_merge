@@ -3,7 +3,7 @@
 
 
 function find_conflict_markers {
-  result="$(egrep -rls "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text')"
+  result="$(egrep -rls --exclude="*.md" --exclude="*.markdown" "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text')"
   #if [[ $(egrep -rls "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text') != "" ]]
   if [[ $result != "" ]]
   then
