@@ -63,10 +63,11 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-# PATH=path | awk ' !x[$0]++'
+
+# Remove duplicates from PATH
 export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
 
 echo "Running .bash_profile"
 
 
-# vim ft=sh
+# vim ft=bash

@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# set -e
+
+function run_test {
+    # Include any branches for which you wish to disable this script
+    if [ -z "$BRANCHES_TO_SKIP" ]; then
+        BRANCHES_TO_SKIP=(master develop)
+#         echo $BRANCHES_TO_SKIP
+#         echo $?
+    fi
+
+    # Get the current branch name and check if it is excluded
+    BRANCH_NAME=$(git symbolic-ref --short HEAD)
+#         echo $?
+#         echo $BRANCH_NAME
+    BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+#         echo $?
+#         echo $BRANCH_EXCLUDED
+
+    TRIMMED=$(echo $BRANCH_NAME | sed -e 's;^[^/]*/;;' -e 's;^\([^-]*-[0-9]*\).*;\1:;')
+#         echo $?
+
+#      echo "trimmed=$TRIMMED"
+
+    # If it isn't excluded, prepend the trimmed branch identifier to the given message
+    if [ -n "$BRANCH_NAME" ] &&  ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
+        sed -i.bak -e "1s/^/$TRIMMED /" $1
+#         echo $?
+        #sed -e "1s/^/$TRIMMED /" $1
+    fi
+}
+
+case "${1}" in
+    --about )
+        echo "Prepend the Jira Ticket ID to the commit message"
+        ;;
+    * )
+        run_test $@
+        ;;
+esac
