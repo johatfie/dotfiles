@@ -87,7 +87,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   elif [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
     . "/usr/local/etc/profile.d/bash_completion.sh"
-    echo ". /usr/local/etc/profile.d/bash_completion.sh"
+#     echo ". /usr/local/etc/profile.d/bash_completion.sh"
   fi
 fi
 
@@ -145,6 +145,11 @@ if [ -e ~/bin/auto_install.sh ]; then
     ~/bin/auto_install.sh
 fi
 
+
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+fi
+
 # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
 
 
@@ -156,4 +161,4 @@ complete -C /usr/local/bin/vault vault
 
 echo "Running .bashrc"
 
-# vim ft=sh
+# vim ft=bash

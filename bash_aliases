@@ -23,6 +23,7 @@ alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias clear='printf "\033c"'
 alias egrep='egrep --color=auto'              # show differences in colour
 alias env='env | sort'
+alias env?='env | grep'
 alias fgrep='fgrep --color=auto'              # show differences in colour
 alias g='git'
 alias gc='git commit'
