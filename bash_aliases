@@ -108,6 +108,7 @@ alias vault_old='export VAULT_ADDR=https://vault.hc.appriss.com'
 alias be="bundle exec"
 alias kb="kubectl"
 alias kx="kubectx"
+alias i2="impostor2"
 # alias fhir_pods="kb get pods --all-namespaces | grep fhir"
 # alias ca_pods="kb get pods --all-namespaces | grep clinical-alerts"
 alias adfs="aws-adfs login --adfs-host=adfs.appriss.com --no-sspi"

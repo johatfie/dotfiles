@@ -85,6 +85,7 @@ export MANPATH=$MANPATH:/Library/PostgreSQL/9.6/share/man
 
 eval "$(rbenv init -)"
 eval "$(direnv hook bash)"
+eval "$(/usr/local/bin/impostor2 config env)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
