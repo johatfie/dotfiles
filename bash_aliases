@@ -16,9 +16,10 @@ alias du='du -ch'
 # Misc :)
 alias 'alias?'='alias | grep'
 alias 'ps?'='ps_grep'
+alias ag='ag --path-to-ignore ~/.ignore --pager most'
 alias alais=alias
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
-alias cat='pygmentize -g'
+# alias cat='pygmentize -g'
 alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias clear='printf "\033c"'
 alias egrep='egrep --color=auto'              # show differences in colour
@@ -32,6 +33,7 @@ alias grep='grep --color'                     # show differences in colour
 alias gst='git status'
 alias h?='history | grep'
 alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias java8='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 alias java11='export JAVA_HOME=$(/usr/libexec/java_home -v 11)'
 alias jgrep='~/scripts/jgrep'
 alias less='less -r'                          # raw control characters
@@ -110,30 +112,29 @@ alias be="bundle exec"
 alias kb="kubectl"
 alias kx="kubectx"
 alias i2="impostor2"
-# alias fhir_pods="kb get pods --all-namespaces | grep fhir"
-# alias ca_pods="kb get pods --all-namespaces | grep clinical-alerts"
 alias adfs="aws-adfs login --adfs-host=adfs.appriss.com --no-sspi"
 alias kube_new="export KUBECONFIG='/Users/jhatfield/.kube/lz_config'"
 alias kube_old="export KUBECONFIG='/Users/jhatfield/.kube/config'"
 #alias adfs_reset="aws-adfs reset &; unset AWS_DEFAULT_PROFILE &; aws configure --profile 'default'"
 
-alias ca_pods="kb get pods --all-namespaces | awk 'NR == 1 || /clinical-alerts/'"
-alias fhir_pods="kb get pods --all-namespaces | awk 'NR == 1 || /fhir/'"
-alias nr_pods="kb get pods --all-namespaces | awk 'NR == 1 || /narxcare-reports/'"
+alias asap_pods="kb get pods --all-namespaces | awk 'NR == 1 || /asap/' | grep -E '$|asap'"
+alias ca_pods="kb get pods --all-namespaces | awk 'NR == 1 || /clinical-alerts/' | grep -E '$|svc-clinical-alerts-service'"
+alias ic_pods="kb get pods --all-namespaces | awk 'NR == 1 || /interconnect/' | grep -E '$|pmpi-rails'"
+alias gateway_pods="kb get pods --all-namespaces | awk 'NR == 1 || /gateway/' | grep -E '$|gw-rails'"
+alias fhir_pods="kb get pods --all-namespaces | awk 'NR == 1 || /fhir/' | grep -E '$|appriss-fhir-integrator'"
+alias nr_pods="kb get pods --all-namespaces | awk 'NR == 1 || /narxcare-reports/' | grep -E '$|narxcare-reports-rails'"
 
 alias kbdpcd="kb delete pod $@ -n clinical-alerts-dev"
 alias kbdpcq="kb delete pod $@ -n clinical-alerts-qa"
 alias kbdpcp="kb delete pod $@ -n clinical-alerts-prep"
+alias kbdpid="kb delete pod $@ -n interconnect-dev"
+alias kbdpiq="kb delete pod $@ -n interconnect-qa"
+alias kbdpip="kb delete pod $@ -n interconnect-prep"
 alias kbdpfd="kb delete pod $@ -n fhir-dev"
 alias kbdpfq="kb delete pod $@ -n fhir-qa"
 alias kbdpnrd="kb delete pod $@ -n pmp-dev"
 alias kbdpnrq="kb delete pod $@ -n pmp-qa"
 
-# alias kblfd="kb logs -f $@ -n fhir-dev -c appriss-fhir-integrator"
-# alias kblfq="kb logs -f $@ -n fhir-qa -c appriss-fhir-integrator"
-# alias kblcd="kb logs -f $@ -n clinical-alerts-dev -c clinical-alerts-service"
-# alias kblcq="kb logs -f $@ -n clinical-alerts-qa -c clinical-alerts-service"
-# alias kblcp="kb logs -f $@ -n clinical-alerts-prep -c clinical-alerts-service"
 
 # echo "Running .bash_aliases"
 

@@ -172,7 +172,7 @@ function combined_prompt () {
 #export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi';prompt_command
 export PROMPT_COMMAND=combined_prompt
 
-function extract {
+function extract () {
     if [ -z "$1" ]; then
         # display usage if no parameters given
         echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -205,7 +205,7 @@ function extract {
 }
 
 # fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fbr() {
+function fbr() {
     local branches branch
     branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
     branch=$(echo "$branches" |
@@ -225,6 +225,12 @@ function adfs_reset () {
 
     echo aws configure --profile 'default'
     aws configure --profile 'default'
+}
+
+
+# kb bash prompt
+function kbead() {
+    kb exec -it $1 -n gateway-dev -- /bin/bash
 }
 
 function kbecd() {
@@ -248,12 +254,59 @@ function kbeid() {
 }
 
 function kbenrd() {
-    kb exec -it $1 -n pmp-dev -- /bin/bash
+    kb exec -it $1 -n narxcare-reports-dev -- /bin/bash
 }
 
 function kbenrq() {
-    kb exec -it $1 -n pmp-qa -- /bin/bash
+    kb exec -it $1 -n narxcare-reports-qa -- /bin/bash
 }
+
+
+# kb get logs
+function kblad() {
+    kb logs -f $@ -n gateway-dev #-c clinical-alerts-service
+}
+
+function kblcd() {
+    kb logs -f $@ -n clinical-alerts-dev -c clinical-alerts-service
+}
+
+function kblcq() {
+    kb logs -f $@ -n clinical-alerts-qa -c clinical-alerts-service
+}
+
+function kblcp() {
+    kb logs -f $@ -n clinical-alerts-prep -c clinical-alerts-service
+}
+
+function kblid() {
+    kb logs -f $@ -n interconnect-dev -c pmpi-rails
+}
+
+function kbliq() {
+    kb logs -f $@ -n interconnect-qa -c pmpi-rails
+}
+
+function kblip() {
+    kb logs -f $@ -n interconnect-prep -c pmpi-rails
+}
+
+function kblfd() {
+    kb logs -f $@ -n fhir-dev -c appriss-fhir-integrator
+}
+
+function kblfq() {
+    kb logs -f $@ -n fhir-qa -c appriss-fhir-integrator
+}
+
+function kblnrd() {
+    kb logs -f $@  -n narxcare-reports-dev -c narxcare-reports-rails
+}
+
+function kblnrq() {
+    kb logs -f $@  -n narxcare-reports-qa -c narxcare-reports-rails
+}
+
 
 function asp()
 {
