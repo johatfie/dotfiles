@@ -63,10 +63,14 @@ fi
 
 
 # Appriss specific
-export VAULT_ADDR=https://vault.hc.appriss.com
+export VAULT_ADDR=https://dbvault.hc.appriss.com
 #export AWS_DEFAULT_PROFILE=adfs
 export KUBECONFIG="${HOME}/.kube/lz_config"
 export PATH="/usr/local/opt/postgresql@9.6/bin:$PATH"
+
+export AWS_DEFAULT_PROFILE=hd-pmp-developer
+export AWS_EB_PROFILE=hd-pmp-developer
+export AWS_PROFILE=hd-pmp-developer
 
 # Set PATH so it includes AWS command line utilities
 if [ -d "${HOME}/Applications" ] ; then

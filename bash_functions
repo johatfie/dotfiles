@@ -213,6 +213,16 @@ function fbr() {
     git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
+function brew_logged() {
+    #echo "script -q -a /usr/local/var/log/homebrew.log \brew \"$@\""
+    #echo "script -q -a /usr/local/var/log/homebrew.log \brew $@"
+
+    echo >> /usr/local/var/log/homebrew.log
+    date >> /usr/local/var/log/homebrew.log
+    echo "brew $@" >> /usr/local/var/log/homebrew.log
+    script -q -a /usr/local/var/log/homebrew.log \brew $@
+}
+
 
 # Appriss specific functions
 
@@ -231,6 +241,10 @@ function adfs_reset () {
 # kb bash prompt
 function kbead() {
     kb exec -it $1 -n gateway-dev -- /bin/bash
+}
+
+function kbeaq() {
+    kb exec -it $1 -n gateway-qa -- /bin/bash
 }
 
 function kbecd() {

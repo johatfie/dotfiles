@@ -18,6 +18,7 @@ alias 'alias?'='alias | grep'
 alias 'ps?'='ps_grep'
 alias ag='ag --path-to-ignore ~/.ignore --pager most'
 alias alais=alias
+alias brew='brew_logged'
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
 # alias cat='pygmentize -g'
 alias catln='pygmentize -g -O style=colorful,linenos=1'
@@ -115,7 +116,6 @@ alias i2="impostor2"
 alias adfs="aws-adfs login --adfs-host=adfs.appriss.com --no-sspi"
 alias kube_new="export KUBECONFIG='/Users/jhatfield/.kube/lz_config'"
 alias kube_old="export KUBECONFIG='/Users/jhatfield/.kube/config'"
-#alias adfs_reset="aws-adfs reset &; unset AWS_DEFAULT_PROFILE &; aws configure --profile 'default'"
 
 alias asap_pods="kb get pods --all-namespaces | awk 'NR == 1 || /asap/' | grep -E '$|asap'"
 alias ca_pods="kb get pods --all-namespaces | awk 'NR == 1 || /clinical-alerts/' | grep -E '$|svc-clinical-alerts-service'"
