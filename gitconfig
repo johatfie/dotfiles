@@ -1,16 +1,16 @@
 [user]
-    name = jh-tccrocks
-    email = jhatfield@tccrocks.com
+    name = "Jon Hatfield"
+    email = jon.hatfield@kroger.com
 
 #[commit]
 #    template = ~/.git_commit_template
 
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
+    process = git-lfs filter-process
 
 
 [merge]
@@ -151,9 +151,9 @@
     server = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 
 [core]
-    excludesfile = ~/.cvsignore
+    excludesfile = ~/.gitignore
     editor = vim
-    autocrlf = input
+    autocrlf = true
 
     # Treat spaces before tabs and all kinds of trailing whitespace as an error
     # [default] trailing-space: looks for spaces at the end of a line
@@ -162,7 +162,7 @@
 
     # Make `git rebase` safer on OS X
     # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-    trustctime = false
+    #trustctime = false
 
     # Prevent showing files whose names contain non-ASCII symbols as unversioned.
     # http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
@@ -201,5 +201,12 @@
 # [mergetool "sourcetree"]
 #     cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 #     trustExitCode = true
+#[http]
+#    postBuffer = 524288000
+
 [http]
-    postBuffer = 524288000
+    proxy = http://localhost:3128
+    sslverify = false
+[https]
+    proxy = http://localhost:3128
+    sslverify = false
