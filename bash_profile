@@ -64,8 +64,44 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 
+export GRADLE_HOME_CIV=$(cygpath -u $GRADLE_HOME_CIV)
+export GRADLE_HOME=$(cygpath -u $GRADLE_HOME)
+export GRADLE_USER_HOME=$(cygpath -u $GRADLE_USER_HOME)
+export JAVA_HOME_CIV=$(cygpath -u $JAVA_HOME_CIV)
+export JAVA_HOME_YBN=$(cygpath -u $JAVA_HOME_YBN)
+export JAVA_HOME=$(cygpath -u $JAVA_HOME)
+export M2_HOME_YBN=$(cygpath -u $M2_HOME_YBN)
+export M2_HOME=$(cygpath -u $M2_HOME)
+export MAVEN_HOME_YBN=$(cygpath -u $MAVEN_HOME_YBN)
+export MAVEN_HOME=$(cygpath -u $MAVEN_HOME)
+export MW_HOME_YBN=$(cygpath -u $MW_HOME_YBN)
+export MW_HOME=$(cygpath -u $MW_HOME)
+export OneDrive=$(cygpath -u $OneDrive)
+export OneDriveCommercial=$(cygpath -u $OneDriveCommercial)
+export OneDriveSync=$(cygpath -u $OneDriveSync)
+export ORACLE_HOME=$(cygpath -u $ORACLE_HOME)
+export PATH_TO_FX=$(cygpath -u $PATH_TO_FX)
+export ProgramData=$(cygpath -u $ProgramData)
+export PROGRAMFILES="$(cygpath -u $PROGRAMFILES)"
+export ProgramW6432=$(cygpath -u $ProgramW6432)
+export PUBLIC=$(cygpath -u $PUBLIC)
+export REBEL_BASE=$(cygpath -u $REBEL_BASE)
+export SYSTEMDRIVE=$(cygpath -u $SYSTEMDRIVE)
+export SYSTEMROOT=$(cygpath -u $SYSTEMROOT)
+export TNS_ADMIN=$(cygpath -u $TNS_ADMIN)
+export UATDATA=$(cygpath -u $UATDATA)
+export USERPROFILE=$(cygpath -u $USERPROFILE)
+export VSEDEFLOGDIR=$(cygpath -u $VSEDEFLOGDIR)
+export WINDIR=$(cygpath -u $WINDIR)
+export WL_HOME_YBN=$(cygpath -u $WL_HOME_YBN)
+export WL_HOME=$(cygpath -u $WL_HOME)
+
 # Remove duplicates from PATH
-export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
+# export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
+export PATH=$(echo -n "$PATH" | sed -e 's/%\([^%]*\)%/$\1/g' | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}' | envsubst)
+
+# Remove duplicates from PATH
+#export PATH=$(echo -n "$PATH" | sed -e 's/%\([^%]*\)%/$($\1)/g' | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
 
 echo "Running .bash_profile"
 

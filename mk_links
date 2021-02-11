@@ -38,7 +38,7 @@ mkdir .dotfiles_orig
 [[ ! -f .zlogin         ]] && mv .zlogin         ~/.dotfiles_orig/.zlogin_orig
 [[ ! -f .zshrc          ]] && mv .zshrc          ~/.dotfiles_orig/.zshrc_orig
 
-rmdir ~/.dotfiles_orig
+#rmdir ~/.dotfiles_orig
 
 ln -s ~/.dotfiles/bash_aliases   ~/.bash_aliases
 ln -s ~/.dotfiles/bash_functions ~/.bash_functions
