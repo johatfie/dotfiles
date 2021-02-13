@@ -64,6 +64,8 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 
+# CalSAWS settings
+
 export GRADLE_HOME_CIV=$(cygpath -u $GRADLE_HOME_CIV)
 export GRADLE_HOME=$(cygpath -u $GRADLE_HOME)
 export GRADLE_USER_HOME=$(cygpath -u $GRADLE_USER_HOME)
@@ -83,6 +85,7 @@ export ORACLE_HOME=$(cygpath -u $ORACLE_HOME)
 export PATH_TO_FX=$(cygpath -u $PATH_TO_FX)
 export ProgramData=$(cygpath -u $ProgramData)
 export PROGRAMFILES="$(cygpath -u $PROGRAMFILES)"
+# export PROGRAMFILES=$(cygpath -u "$PROGRAMFILES" | sed -e 's; ;\\ ;g')
 export ProgramW6432=$(cygpath -u $ProgramW6432)
 export PUBLIC=$(cygpath -u $PUBLIC)
 export REBEL_BASE=$(cygpath -u $REBEL_BASE)
