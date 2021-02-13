@@ -1,56 +1,57 @@
-#!/bin/bash
+
 
 cd
-wget -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg
+# wget -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg > apt-cyg
+wget -source rawgit.com/kou1okada/apt-cyg/master/apt-cyg > apt-cyg
+
 install apt-cyg /bin
+
 apt-cyg install \
-    lynx \
-    vim \
     bash-completion \
-    curl \
-    git \
-    rsync \
-    cron \
-    procps-ng \
-    xlaunch \
-    cygutils-extra \
-    python \
-    p7zip \
-    zip \
-    unzip \
-    xinit \
-    git-completion \
-    cron \
-    git-gui \
-    gitk \
-    dos2unix \
-    ctags \
-    cscope \
     chere \
-    gnupg \
-    make \
-    tmux \
-    python2-pip \
-    pygments \
-    python2-pygments \
-    python-pygments \
     cloc \
+    cron \
+    cscope \
+    ctags \
+    curl \
+    cygutils-extra \
+    dos2unix \
     fzf \
     fzf-bash \
     fzf-bash-completion \
-    jq \
+    gettext \
+    git \
+    git-completion \
+    git-gui \
+    gitk \
+    gnupg \
+    lynx \
+    make \
     moreutils \
     most \
+    p7zip \
+    procps-ng \
+    python38 \
+    python38-pip \
+    python38-pygments \
     the_silver_searcher \
-    tig
+    tig \
+    tmux \
+    tree \
+    unzip \
+    vim \
+    xinit \
+    xlaunch \
+    zip
 
-git clone http://github.com/johatfie/dotfiles .dotfiles
+git clone https://github.com/johatfie/dotfiles .dotfiles
 mkdir .dotfiles_orig
 mv .bash_profile .dotfiles_orig/
 mv .bashrc .dotfiles_orig/
 mv .inputrc .dotfiles_orig/
 mv .profile .dotfiles_orig/
 cd .dotfiles
+dos2unix *
 # cat mk_links
 
 ln -s ~/.dotfiles/bash_aliases   ~/.bash_aliases
@@ -67,21 +68,18 @@ ln -s ~/.dotfiles/mkshrc         ~/.mkshrc
 ln -s ~/.dotfiles/profile        ~/.profile
 cd
 source .bashrc
-cd .dotfiles
+
 cd
-git clone http://github.com/johatfie/vim .vim
+git clone https://github.com/johatfie/vim .vim
 cd .vim/
 git submodule init
 git submodule update
-g submodule foreach git pull origin master
+git submodule foreach git checkout master
+git submodule foreach git pull origin master
 
 cd
-easy_install-2.7 pip
-pip install --upgrade pip
-pip install Pygments
-easy_install-2.7 pygments
-
-cd repositories/
+mkdir repos
+cd repos/
 git clone https://github.com/visionmedia/git-extras.git
 cd git-extras/
 make install
