@@ -6,11 +6,9 @@ install apt-cyg /bin
 apt-cyg install \
     lynx \
     vim \
-    subversion \
     bash-completion \
     curl \
     git \
-    git-svn \
     rsync \
     cron \
     procps-ng \
@@ -35,7 +33,16 @@ apt-cyg install \
     python2-pip \
     pygments \
     python2-pygments \
-    python-pygments
+    python-pygments \
+    cloc \
+    fzf \
+    fzf-bash \
+    fzf-bash-completion \
+    jq \
+    moreutils \
+    most \
+    the_silver_searcher \
+    tig
 
 git clone http://github.com/johatfie/dotfiles .dotfiles
 mkdir .dotfiles_orig
