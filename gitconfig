@@ -1,16 +1,16 @@
 [user]
-    name = jh-tccrocks
-    email = jhatfield@tccrocks.com
+    name = hatfieldj
+    email = hatfieldj@calsaws.org
 
 #[commit]
 #    template = ~/.git_commit_template
 
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
-	process = git-lfs filter-process
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    required = true
+    process = git-lfs filter-process
 
 
 [merge]
@@ -204,4 +204,4 @@
 [http]
     postBuffer = 524288000
 [pull]
-	rebase = false
+    rebase = false
