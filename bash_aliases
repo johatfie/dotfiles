@@ -94,6 +94,13 @@ alias cpuinfo='lscpu'
 ## get GPU ram on desktop / laptop##
 alias gpumeminfo='grep memory /var/log/Xorg.0.log'
 
+# docker
+alias d=docker
+alias dc=docker-compose
+alias dm=docker-machine
+
+alias kb="kubectl"
+alias kx="kubectx"
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
