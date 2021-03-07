@@ -16,3 +16,6 @@ doskey .4=cd ../../../../
 doskey .5=cd ../../../../../
 doskey .6=cd ../../../../../../
 doskey .7=cd ../../../../../../../
+doskey d=docker $*
+doskey dc=docker-compose $*
+
