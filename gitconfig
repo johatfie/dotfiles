@@ -1,6 +1,6 @@
 [user]
-    name = hatfieldj
-    email = hatfieldj@calsaws.org
+    name = Jon Hatfield
+    email = jhatfield@sandata.com
 
 #[commit]
 #    template = ~/.git_commit_template
@@ -24,20 +24,21 @@
     #name = perforce merge driver
     #driver = ~/merge_driver %A %O %B
 
-#[mergetool "p4merge"]
-    #;path = "/Applications/p4merge.app/Contents/MacOS/p4merge"
+[mergetool "p4merge"]
+    path = /Applications/p4merge.app/Contents/MacOS/p4merge
     #path = /usr/bin/p4merge
-    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
+    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge \"$PWD/$BASE\" \"$PWD/$LOCAL\" \"$PWD/$REMOTE\" \"$PWD/$MERGED\"
+    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
     #cmd = p4merge "\"$PWD/$BASE\"" "\"$PWD/$LOCAL\"" "\"$PWD/$REMOTE\"" "\"$PWD/$MERGED\""
     #cmd = 'p4merge $BASE $LOCAL $REMOTE $MERGED'
-    #keepTemporaries = false
-    #;trustExitCode = false
-    #;keepBackup = false
-
-[mergetool "p4merge"]
-    path = "c:/Program Files/Perforce/p4merge.exe"
-    cmd = "p4merge `cygpath -w $BASE` `cygpath -w $LOCAL` `cygpath -w $REMOTE` `cygpath -w $MERGED`"
+    keepTemporaries = false
     trustExitCode = false
+    keepBackup = false
+
+;[mergetool "p4merge"]
+    ;path = c:/Program Files/Perforce/p4merge.exe
+    ;cmd = p4merge `cygpath -w $BASE` `cygpath -w $LOCAL` `cygpath -w $REMOTE` `cygpath -w $MERGED`
+    ;trustExitCode = false
 
 [mergetool]
     keepBackup = false
@@ -54,14 +55,16 @@
     #cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
 
 [difftool "p4merge"]
-    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+    #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$REMOTE\"" "\"$PWD/$LOCAL\""
+    ;cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+    cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge \"$LOCAL\" \"$REMOTE\"
     #;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
     #;cmd = /usr/bin/p4merge ""\"$REMOTE\"" "\"$LOCAL\""
-    cmd = /usr/bin/p4merge `cygpath -asm $LOCAL`  `cygpath -asm $REMOTE`
+    #cmd = /usr/bin/p4merge `cygpath -asm $LOCAL`  `cygpath -asm $REMOTE`
     #cmd = 'p4merge $BASE $LOCAL $REMOTE $MERGED'
-    #keepTemporaries = false
-    #trustExitCode = false
-    #keepBackup = false
+    keepTemporaries = false
+    trustExitCode = false
+    keepBackup = false
 
 [difftool]
     keepBackup = false
@@ -108,15 +111,15 @@
 [alias]
     a = add
 
-    ahead = "!git log -p $(git rev-parse --abbrev-ref HEAD) --not master"
+    ahead = !git log -p $(git rev-parse --abbrev-ref HEAD) --not $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
 
     # Amend the currently staged files to the latest commit
-    amend = commit --amend --reuse-message=HEAD
+    amend = commit --amend --reuse-message=HEAD --date=now
 
     # list branches sorted by last modified
-    b = "!git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'"
+    b = !git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
 
-    behind = "!git log -p master --not $(git rev-parse --abbrev-ref HEAD)"
+    behind = !git log -p $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@') --not $(git rev-parse --abbrev-ref HEAD)
     br = branch
     ci = commit
     cm = !git add -A && git commit -m
@@ -132,20 +135,20 @@
     # ll = log --color --decorate --oneline --abbrev-commit
 
     # List commits showing changed files is invoked with git ll and looks like this:
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ll = log --pretty=format:%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate --numstat
 
     # List commits in short form, with colors and branch/tag annotations.
-    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ls = log --pretty=format:%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn] --decorate
 
-    pushgh = "!git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
+    pushgh = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)
     save = !git add -A && git commit -m 'SAVEPOINT'
-    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+    snapshot = !git stash save snapshot: $(date) && git stash apply stash@{0}
     staged = diff --cached
     st = status
-    undo = reset HEAD~1 --mixed
+    # undo = reset HEAD~1 --mixed
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-    wip = !git add -u && git commit -m "WIP"
+    wip = !git add -u && git commit -m WIP
     wipa = !git add -u && git amend
     visual = !gitk
     server = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
@@ -172,23 +175,23 @@
 
 [url "git@github.com:"]
 
-    insteadOf = "gh:"
-    pushInsteadOf = "github:"
-    pushInsteadOf = "git://github.com/"
+    insteadOf = gh:
+    pushInsteadOf = github:
+    pushInsteadOf = git://github.com/
 
 [url "git://github.com/"]
 
-    insteadOf = "github:"
+    insteadOf = github:
 
 [url "git@gist.github.com:"]
 
-    insteadOf = "gst:"
-    pushInsteadOf = "gist:"
-    pushInsteadOf = "git://gist.github.com/"
+    insteadOf = gst:
+    pushInsteadOf = gist:
+    pushInsteadOf = git://gist.github.com/
 
 [url "git://gist.github.com/"]
 
-    insteadOf = "gist:"
+    insteadOf = gist:
 
 [include]
     path = ~/.gitconfig.local
@@ -203,5 +206,11 @@
 #     trustExitCode = true
 [http]
     postBuffer = 524288000
+[filesystem "Oracle Corporation|11.0.2|/dev/disk1s1"]
+    timestampResolution = 9000 nanoseconds
+    minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|1.8.0_232|/dev/disk1s1"]
+    timestampResolution = 1001 milliseconds
+    minRacyThreshold = 0 nanoseconds
 [pull]
     rebase = false

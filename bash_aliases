@@ -32,6 +32,7 @@ alias grep='grep --color'                     # show differences in colour
 alias gst='git status'
 alias h?='history | grep'
 alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
+alias java8='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 alias java11='export JAVA_HOME=$(/usr/libexec/java_home -v 11)'
 alias jgrep='~/scripts/jgrep'
 alias less='less -r'                          # raw control characters
