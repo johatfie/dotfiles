@@ -1,4 +1,4 @@
-# #!/usr/bin/env bash
+#!/usr/bin/env bash
 
 cd
 
@@ -48,11 +48,16 @@ ln -s ~/.dotfiles/bashrc         ~/.bashrc
 ln -s ~/.dotfiles/crontab        ~/.crontab
 ln -s ~/.dotfiles/curlrc         ~/.curlrc
 ln -s ~/.dotfiles/cvsignore      ~/.cvsignore
+ln -s ~/.dotfiles/dictionary     ~/dictionary
 ln -s ~/.dotfiles/gitconfig      ~/.gitconfig
+ln -s ~/.dotfiles/ideavimrc      ~/.ideavimrc
 ln -s ~/.dotfiles/inputrc        ~/.inputrc
 ln -s ~/.dotfiles/irbrc          ~/.irbrc
 ln -s ~/.dotfiles/mkshrc         ~/.mkshrc
 ln -s ~/.dotfiles/profile        ~/.profile
+ln -s ~/.dotfiles/_vrapperrc     ~/.vrapperrc
 ln -s ~/.dotfiles/rvmrc          ~/.rvmrc
 ln -s ~/.dotfiles/zlogin         ~/.zlogin
 ln -s ~/.dotfiles/zshrc          ~/.zshrc
+
+ln -s ~/.dotfiles/git_hooks/     ~/.git_hooks
