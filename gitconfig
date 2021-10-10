@@ -196,14 +196,6 @@
 [include]
     path = ~/.gitconfig.local
 
-#[init]
-#    templatedir = ~/.gittemplate
-# [difftool "sourcetree"]
-#     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-#     path =
-# [mergetool "sourcetree"]
-#     cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.2.4/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-#     trustExitCode = true
 [http]
     postBuffer = 524288000
 [filesystem "Oracle Corporation|11.0.2|/dev/disk1s1"]

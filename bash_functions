@@ -1,13 +1,20 @@
 
 # function settitle
 #
-settitle ()
+function settitle ()
 {
-    echo -ne "\e]2;$@\a\e]1;$@\a";
+    git_root="$(basename $(git rev-parse --show-toplevel 2>/dev/null) 2>/dev/null)"
+
+    if [[ $git_root != '' ]]; then
+        echo -ne "\033];${git_root}\007"
+    else
+        echo -ne "\033];${PWD##*/}\007"
+    fi
 }
 
 function defaults ()
-{ echo defaults "$@" >> ~/Documents/defaults.txt
+{
+    echo defaults "$@" >> ~/Documents/defaults.txt
     /usr/bin/defaults "$@"
 }
 
@@ -42,34 +49,40 @@ cd_func ()
     fi
 
 
-  # '~' has to be substituted by ${HOME}
-  [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
+    # '~' has to be substituted by ${HOME}
+    [[ ${the_new_dir:0:1} == '~' ]] && the_new_dir="${HOME}${the_new_dir:1}"
 
-  # Now change to the new dir and add to the top of the stack
+    # Now change to the new dir and add to the top of the stack
 
-  pushd "${the_new_dir}" > /dev/null
-  [[ $? -ne 0 ]] && return 1
-  the_new_dir=$(pwd)
+    pushd "${the_new_dir}" > /dev/null
+    [[ $? -ne 0 ]] && return 1
+    the_new_dir=$(pwd)
+
+    # if using iTerm2, set the title
+    if [ $ITERM_SESSION_ID ]; then
+        settitle
+    fi
+
+    # Trim down everything beyond 11th entry
+    popd -n +11 2>/dev/null 1>/dev/null
 
 
-  # Trim down everything beyond 11th entry
-  popd -n +11 2>/dev/null 1>/dev/null
+    # Remove any other occurence of this dir, skipping the top of the stack
+    for ((cnt=1; cnt <= 10; cnt++)); do
+        x2=$(dirs +${cnt} 2>/dev/null)
+        [[ $? -ne 0 ]] && return 0
+        [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
+        if [[ "${x2}" == "${the_new_dir}" ]]; then
+            popd -n +$cnt 2>/dev/null 1>/dev/null
+            cnt=cnt-1
+        fi
+    done
 
-
-  # Remove any other occurence of this dir, skipping the top of the stack
-  for ((cnt=1; cnt <= 10; cnt++)); do
-      x2=$(dirs +${cnt} 2>/dev/null)
-      [[ $? -ne 0 ]] && return 0
-      [[ ${x2:0:1} == '~' ]] && x2="${HOME}${x2:1}"
-      if [[ "${x2}" == "${the_new_dir}" ]]; then
-          popd -n +$cnt 2>/dev/null 1>/dev/null
-          cnt=cnt-1
-      fi
-  done
-
-  return 0
+    return 0
 }
 
+# alias cd='cd_func && settitle'
+#alias cd='cd_func; settitle'
 alias cd=cd_func
 
 # function cd_finder_func
@@ -84,7 +97,7 @@ cd_finder_func() {
     fi
 }
 
-alias cdf=cd_finder_func
+#alias cdf=cd_finder_func
 
 
 # function man_func
@@ -207,10 +220,77 @@ function extract {
 fbr() {
     local branches branch
     branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
-    branch=$(echo "$branches" |
-    fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+        branch=$(echo "$branches" |
+            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+            git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
+
+# fd - cd to selected directory
+fd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+    cd "$dir"
+}
+
+
+# fdr - cd to selected parent directory
+fdr() {
+    local declare dirs=()
+    get_parent_dirs() {
+        if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+        if [[ "${1}" == '/' ]]; then
+            for _dir in "${dirs[@]}"; do echo $_dir; done
+        else
+            get_parent_dirs $(dirname "$1")
+        fi
+    }
+
+    local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+    cd "$DIR"
+}
+
+
+# cdf - cd into the directory of the selected file
+cdf() {
+    local file
+    local dir
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fstash - easier way to deal with stashes
+# type fstash to get a list of your stashes
+# enter shows you the contents of the stash
+# ctrl-d shows a diff of the stash against your current HEAD
+# ctrl-b checks the stash out as a branch, for easier merging
+fstash() {
+    local out q k sha
+    while out=$(
+        git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
+        fzf --ansi --no-sort --query="$q" --print-query \
+            --expect=ctrl-d,ctrl-b);
+    do
+        mapfile -t out <<< "$out"
+        q="${out[0]}"
+        k="${out[1]}"
+        sha="${out[-1]}"
+        sha="${sha%% *}"
+        [[ -z "$sha" ]] && continue
+
+        if [[ "$k" == 'ctrl-d' ]]; then
+            git diff $sha
+        elif [[ "$k" == 'ctrl-b' ]]; then
+            git stash branch "stash-$sha" $sha
+            break;
+        else
+            git stash show -p $sha
+        fi
+    done
+}
+
+
+
+
 
 # echo "Running .bash_functions"
 
