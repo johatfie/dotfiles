@@ -18,7 +18,8 @@ function run_test {
 #         echo $?
 #         echo $BRANCH_EXCLUDED
 
-    TRIMMED=$(echo $BRANCH_NAME | sed -e 's;^[^/]*/;;' -e 's;^\([^-]*-[0-9]*\).*;\1:;')
+    #TRIMMED=$(echo $BRANCH_NAME | sed -e 's;^[^/]*/;;' -e 's;^\([^-]*-[0-9]*\).*;\1:;')
+    TRIMMED=$(echo $BRANCH_NAME | sed -e 's;^env/;;i' -e 's;revc-[0-9]*/;;i' -e 's;feature/;;i' -e 's;hotfix/;;i' -e 's;^\([^-]*-[0-9]*\).*;\1: ;' | tr "[a-z]" "[A-Z]")
 #         echo $?
 
 #      echo "trimmed=$TRIMMED"

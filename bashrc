@@ -154,6 +154,11 @@ fi
 # export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
 
 
+
+export AWS_ACCESS_KEY_ID=AKIA5VJGBT24HCXWUL5Y
+export AWS_SECRET_ACCESS_KEY=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
+export AWS_REGION=us-east-1
+
 bind 'Space: magic-space'
 
 echo "Running .bashrc"
