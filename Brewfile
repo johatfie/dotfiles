@@ -29,6 +29,8 @@ brew "calc"
 brew "coreutils"
 # Emacs dependency management
 brew "cask"
+# Validate CloudFormation templates against the CloudFormation spec
+brew "cfn-lint"
 # Checks for bashisms in shell scripts
 brew "checkbashisms"
 # Statistics utility to count lines of code
@@ -42,7 +44,7 @@ brew "direnv"
 # Pack, ship and run any application as a lightweight container
 brew "docker", link: false
 # Isolated development environments using Docker
-brew "docker-compose"
+brew "docker-compose", link: false
 # Docker Credential Helper for Amazon ECR
 brew "docker-credential-helper-ecr", link: false
 # Convert text between DOS, UNIX, and Mac formats
