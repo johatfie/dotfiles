@@ -209,3 +209,5 @@
 
 [includeIf "gitdir:~/projects/"]
   path = ~/.dotfiles/gitconfig-work
+[init]
+	defaultBranch = master
