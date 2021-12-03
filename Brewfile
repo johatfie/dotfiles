@@ -73,6 +73,8 @@ brew "htop"
 brew "iproute2mac"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Modern load testing tool, using Go and JavaScript
+brew "k6"
 # Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
 # LastPass command-line interface tool
