@@ -64,6 +64,10 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+
+
 # Remove duplicates from PATH
 # export PATH=$(echo -n "$PATH" | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}')
 export PATH=$(echo -n "$PATH" | sed -e 's/%\([^%]*\)%/$\1/g' | awk -v RS=':' '(!a[$0]++){if(b++)printf(RS);printf($0)}' | envsubst)
