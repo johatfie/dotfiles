@@ -34,7 +34,8 @@ fi
 
 # Set PATH so it includes Homebrew's sbin if it exists
 if [ -d /usr/local/sbin ]; then
-    export PATH="/usr/local/sbin:$PATH"
+    #export PATH="/usr/local/sbin:$PATH"
+    PATH="/usr/local/sbin:$PATH"
 fi
 
 # if [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then

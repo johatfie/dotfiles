@@ -24,7 +24,6 @@ alias clear='printf "\033c"'
 alias egrep='egrep --color=auto'              # show differences in colour
 alias env='env | sort'
 alias 'env?'='env | grep'
-#alias env?='env | grep'
 alias fgrep='fgrep --color=auto'              # show differences in colour
 alias g='git'
 alias gc='git commit'
@@ -33,7 +32,6 @@ alias grep='grep --color'                     # show differences in colour
 alias gst='git status'
 alias h='history'
 alias 'h?'='history | grep'
-#alias h?='history | grep'
 alias hdel='TMP=$(history | tail -1 | awk "{print $1}") && history -d $TMP'
 alias java8='export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
 alias java11='export JAVA_HOME=$(/usr/libexec/java_home -v 11)'
@@ -42,7 +40,6 @@ alias less='less -r'                          # raw control characters
 # alias o='open -a'
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
-alias reload='source ~/.bashrc'
 alias reload='source ~/.bash_profile'
 alias rmvim='vim -S ~/Session.vim'
 alias ssh_config="\cat ~/.ssh/config.d/* > ~/.ssh/config"
@@ -50,7 +47,6 @@ alias vim='vim -v'
 alias virtualbox='sudo virtualbox &'
 alias wget='wget -c'                          # allow resuming downloads
 alias whence='type -a'                        # where, of a sort
-alias winhome='cd `cygpath C:/Users/filis`'
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
@@ -118,7 +114,7 @@ alias kx="kubectx"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 #alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias alert='terminal-notifier -message "Command finished"; say command finished'
+#alias alert='terminal-notifier -message "Command finished"; say command finished'
 
 # echo "Running .bash_aliases"
 

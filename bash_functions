@@ -59,9 +59,9 @@ cd_func ()
     the_new_dir=$(pwd)
 
     # if using iTerm2, set the title
-    if [ $ITERM_SESSION_ID ]; then
+#     if [ $ITERM_SESSION_ID ]; then
         settitle
-    fi
+#     fi
 
     # Trim down everything beyond 11th entry
     popd -n +11 2>/dev/null 1>/dev/null

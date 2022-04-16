@@ -101,11 +101,11 @@ if [ -d /usr/local/etc/bash_completion.d ]; then
     done
 fi
 
-if [ -f /usr/local/etc/bash_completion.d/git.sh ]; then
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
     # Add git completion to aliases
     __git_complete gco _git_checkout
     __git_complete g __git_main
-    __git_complete gm __git_merge
+#     __git_complete gm __git_merge
 fi
 
 complete -d cd
@@ -156,14 +156,6 @@ if [ -f "${HOME}/.bash_functions" ]; then
 fi
 
 
-# <<<<<<< HEAD
-
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
-# Load the default .profile
-# if [ -s "$HOME/.profile" ] ; then
-#     source "$HOME/.profile"
-# =======
 # run any scheduled installers
 if [ -e ~/bin/auto_install.sh ]; then
     ~/bin/auto_install.sh
@@ -172,7 +164,6 @@ fi
 
 if [ -f ~/.fzf.bash ]; then
     source ~/.fzf.bash
-# >>>>>>> master
 fi
 
 # export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
@@ -181,7 +172,7 @@ fi
 
 bind 'Space: magic-space'
 
-export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
+# export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 
 export EDITOR=/usr/local/bin/vim
 export PAGER=less

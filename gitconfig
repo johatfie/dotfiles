@@ -50,10 +50,6 @@
 [diff]
     tool = p4merge
 
-#[difftool "mvim"]
-    ## TODO: doesn't work
-    #cmd="~/Applications/MacVim.app/Contents/MacOS/Vim -d -g -c 'wincmd J' $LOCAL $REMOTE"
-
 [difftool "p4merge"]
     #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$REMOTE\"" "\"$PWD/$LOCAL\""
     ;cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
