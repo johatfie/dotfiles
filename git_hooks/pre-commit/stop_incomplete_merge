@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+
+function find_conflict_markers {
+  result="$(egrep -rls "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text')"
+  #if [[ $(egrep -rls "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text') != "" ]]
+  if [[ $result != "" ]]
+  then
+    echo "Conflict markers found in repo.  Incomplete merge!  Finish merging and try again."
+    #egrep -rls "^<<<<<<< |^>>>>>>> |^=======$" * | xargs file | egrep 'script|text' | awk -F: '{print $1}'
+    echo "$result" | awk -F: '{print $1}'
+    exit 1
+  fi
+}
+
+case "${1}" in
+  --about )
+    echo "Check for git conflict markers still in repo."
+    ;;
+  * )
+    find_conflict_markers
+    ;;
+esac

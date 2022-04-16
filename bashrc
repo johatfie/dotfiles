@@ -42,13 +42,23 @@ set -o vi
 # Use case-insensitive filename globbing
 shopt -s nocaseglob
 
-#
 # Make bash append rather than overwrite the history on disk
 shopt -s histappend
 
 # When changing directory small typos can be ignored by bash
 # for example, cd /vr/lgo/apaache would find /var/log/apache
 shopt -s cdspell
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Completion options
 #
@@ -65,7 +75,22 @@ shopt -s cdspell
 #
 # Uncomment to turn on programmable completion enhancements.
 # Any completions you add in ~/.bash_completion are sourced last.
-[[ -f /etc/bash_completion ]] && . /etc/bash_completion
+# [[ -f /etc/bash_completion ]] && . /etc/bash_completion
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  elif [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]]; then
+    . "/usr/local/etc/profile.d/bash_completion.sh"
+#     echo ". /usr/local/etc/profile.d/bash_completion.sh"
+  fi
+fi
+
 
 # Load all autocompletions if any are installed
 if [ -d /usr/local/etc/bash_completion.d ]; then
@@ -86,20 +111,21 @@ fi
 complete -d cd
 
 # History Options
-#
+
 # Don't put duplicate lines in the history.
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
-#
+
 # Ignore some controlling instructions
 # HISTIGNORE is a colon-delimited list of patterns which should be excluded.
 # The '&' is a special pattern which suppresses duplicate entries.
 # export HISTIGNORE=$'[ \t]*:&:[fb]g:exit'
-export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll' # Ignore the ls command as well
-#
+export HISTIGNORE=$'[ \t]*:&:[fb]g:exit:ls:la:lal:ll:hdel' # Ignore the ls command as well
+
+
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
 
-export HISTTIMEFORMAT="%F  %T  "
+# export HISTTIMEFORMAT="%F  %T  "
 
 
 export HISTFILESIZE=30000000    # save 300000 commands
@@ -130,15 +156,30 @@ if [ -f "${HOME}/.bash_functions" ]; then
 fi
 
 
+# <<<<<<< HEAD
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # Load the default .profile
-if [ -s "$HOME/.profile" ] ; then
-    source "$HOME/.profile"
+# if [ -s "$HOME/.profile" ] ; then
+#     source "$HOME/.profile"
+# =======
+# run any scheduled installers
+if [ -e ~/bin/auto_install.sh ]; then
+    ~/bin/auto_install.sh
 fi
 
-#  [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+if [ -f ~/.fzf.bash ]; then
+    source ~/.fzf.bash
+# >>>>>>> master
+fi
+
+# export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-amd64
+# export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home
+
+
+bind 'Space: magic-space'
 
 export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 
@@ -149,6 +190,4 @@ export GPG_TTY=$(tty)
 
 echo "Running .bashrc"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/usr/home/jon/.sdkman"
-[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
+# vim ft=bash

@@ -147,7 +147,6 @@ Session.vim
 # auto-generated tag files
 tags
 
-tags*
 
 ### Xcode ###
 # Xcode
@@ -191,3 +190,7 @@ cscope.files
 cscope.out
 cscope.in.out
 cscope.po.out
+--edit
+
+edited_files
+sed_cmds

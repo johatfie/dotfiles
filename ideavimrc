@@ -1,0 +1,175 @@
+source ../.vim/vimrc
+
+    set smartindent
+    set autoindent
+    set ignorecase
+    set smartcase
+    set hlsearch
+    set incsearch                   " do incremental searching
+    set number                      " show line numbers
+    set cursorline                  " highlight current line
+    set autochdir                   " Automatically cd to directory of open file
+    set scrolloff=3                 " keep at least 3 lines above/below
+    set softtabstop=4               " number of spaces in tab when editing
+    set tabstop=4                   " number of visual spaces per TAB
+    set expandtab                   " tabs are spaces
+    set shiftwidth=4
+
+
+" Emulated Plugins {{{
+
+    set surround
+    set NERDTree
+    set ideamarks
+
+" }}}
+
+
+" Braces and Quotes {{{
+
+    " This is the way I like my quotation marks and various braces
+    inoremap '' ''<Left>
+    inoremap "" ""<Left>
+    inoremap <> <><Left>
+    inoremap // //<Left>
+    inoremap {} {  }<Left><Left>
+    inoremap [] []<Left>
+    inoremap () ()<Left>
+    "inoremap {} {}<Left>
+    "inoremap [] []<Left>
+    "inoremap () ()<Left>
+    inoremap %% %%<Left>
+    inoremap `` ``<Left>
+
+    cnoremap '' ''<Left>
+    cnoremap "" ""<Left>
+    cnoremap <> <><Left>
+    cnoremap // //<Left>
+    cnoremap {} {}<Left>
+    cnoremap [] []<Left>
+    cnoremap () ()<Left>
+
+" }}}
+
+
+" Vim Buffers {{{
+
+    " buffer switching
+    noremap <C-j> :bprev<CR>
+    noremap <C-k> :bnext<CR>
+
+    nnoremap <leader>l :ls<CR>:b<Space>
+
+" }}}
+
+
+" Arrow Keys {{{
+
+    " Arrow keys are NOT for moving around
+    nnoremap <down> <C-f>
+    nnoremap <up> <C-b>
+    nnoremap <S-left> :NERDTreeFind<cr>
+    nnoremap <left> :NERDTreeToggle<cr>
+    nnoremap <C-left> :NERDTreeToggle<cr>
+    "nnoremap <right> :TagbarToggle<cr>
+    "nnoremap <C-down> :cnext<cr>zvzz
+    "nnoremap <C-up> :cprev<cr>zvzz
+    "nnoremap <S-down> :lnext<cr>zvzz
+    "nnoremap <S-up> :lprev<cr>zvzz
+
+" }}}
+
+
+" Maps {{{
+
+    " Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
+    nnoremap ; :
+    nnoremap : ;
+
+    " Yank from the cursor to the end of the line, to be consistent with C and D.
+    nnoremap Y y$
+
+    " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+    inoremap jj <Esc>
+    inoremap JJ <Esc>
+    inoremap kk <Esc>
+
+    " Create Blank Newlines and stay in Normal mode
+    nnoremap <silent> zj o<Esc>
+    nnoremap <silent> zk O<Esc>
+
+    nnoremap <silent> zJ zj
+    nnoremap <silent> zK zk
+
+    " Don't use Ex mode, use Q for formatting
+    map Q gq
+
+    "Use Ctrl-L to clear the highlighting of :set hlsearch.
+    nnoremap <silent> <C-L> :nohlsearch<CR>
+
+    " If attempting to save in insert mode, switch to normal mode first
+    inoremap ;w <Esc>:w
+    "
+    " ditto for visual mode
+    vnoremap ;w <Esc>:w
+
+    nnoremap <leader>tp :tabnew +pu
+
+    nnoremap j gj
+    nnoremap k gk
+    nnoremap gj j
+    nnoremap gk k
+    "vnoremap y "+y
+
+
+    " select last pasted block
+    nnoremap <expr> gV '`['.getregtype(v:register)[0].'`]l'
+
+    " select last pasted text
+    nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+
+    nnoremap g] :action GotoImplementation<cr>
+    nnoremap ]e :action GotoNextError<cr>
+    nnoremap [e :action GotoPreviousError<cr>
+
+    nnoremap <leader><leader> :action SearchEverywhere<cr>
+    nnoremap <leader>ff       :action FindInPath<cr>
+    nnoremap <leader>fu       :action FindUsages<cr>
+    nnoremap <leader>su       :action ShowUsages<cr>
+    nnoremap <leader>cv       :action ChangeView<cr>
+    nnoremap <leader>bb       :action ToggleLineBreakpoint<cr>
+    nnoremap <leader>br       :action ViewBreakpoints<cr>
+    nnoremap <leader>ic       :action InspectCode<cr>
+    nnoremap <leader>oi       :action OptimizeImports<cr>
+    nnoremap <leader>re       :action RenameElement<cr>
+    nnoremap <leader>rf       :action RenameFile<cr>
+    nnoremap <leader>gq       :action ReformatCode<cr>
+    nnoremap <leader>mv       :action ActivateMavenProjectsToolWindow<cr>
+    nnoremap <leader>dd       :action Debug<cr>
+    nnoremap <leader>dc       :action ChooseDebugConfiguration<cr>
+    nnoremap <leader>rr       :action Run<cr>
+    nnoremap <leader>rc       :action ChooseRunConfiguration<cr>
+    nnoremap <leader>q        :action CloseActiveTab<cr>
+    nnoremap <leader>ga       :action GotoAction<cr>
+    nnoremap <leader>gi       :action GotoImplementation<cr>
+    nnoremap <leader>gs       :action GotoSuperMethod<cr>
+    nnoremap <leader>gd       :action GotoDeclaration<cr>
+    nnoremap <leader>gt       :action GotoTest<cr>
+    nnoremap <leader>gr       :action GotoRelated<cr>
+    nnoremap <leader>gb       :action Annotate<cr>
+    nnoremap <Leader>oi       :action OptimizeImports<CR>
+    nnoremap <Leader>c<space> :action CommentByLineComment<CR>
+    nnoremap <Leader>cc       :action CommentByLineComment<CR>
+    nnoremap <leader>tl       Vy<cr>:action ActivateTerminalToolWindow<cr>
+
+    vnoremap <Leader>c<space> :action       CommentByLineComment<CR>
+    vnoremap <Leader>cc       :action       CommentByLineComment<CR>
+    vnoremap <Leader>cy       y<cr>:action  CommentByLineComment<CR>
+    vnoremap <leader>tl       y<cr>:action  ActivateTerminalToolWindow<cr>
+    vnoremap <leader>em       :action       ExtractMethod<cr>
+
+    " External MacVim
+    "nmap <leader>v ;<action>(Tool_External MacVim)<cr>
+    nnoremap <leader>v :action Tool_External Tools_MacVim<cr>
+
+" }}}

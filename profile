@@ -17,83 +17,16 @@
 # # if [ -n "$BASH_VERSION" ]; then
 # #     # include .bashrc if it exists
 # #     if [ -f "$HOME/.bashrc" ]; then
-# # 	. "$HOME/.bashrc"
+# #     . "$HOME/.bashrc"
 # #     fi
 # # fi
 #
-# # set PATH so it includes user's private bin if it exists
-# if [ -d "$HOME/bin" ] ; then
-#     PATH="$HOME/bin:$PATH"
-# fi
-#
-#
-#
-# if [ -d $HOME/.rvm/bin ] ; then
-#     export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-# fi
-#
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-#
-#
-# echo "Running .profile"
 
-
-# Set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/bin" ] ; then
-  PATH="${HOME}/bin:${PATH}"
+if [ -d "$HOME/.bundler_binstubs" ] ; then
+    export PATH="~/.bundler_binstubs:$PATH"     # I don't remember what this was for, but now it's enclosed in an if block
 fi
 
-# Set PATH so it includes user's brew Applications folder if it exists
-if [ -d "${HOME}/Applications" ] ; then
-  PATH="${HOME}/Applications:${PATH}"
-fi
 
-if [ -d "/usr/local/bin" ] ; then
-  PATH="/usr/local/bin:${PATH}"
-fi
-
-if [ -d "${HOME}/.bundler_binstubs" ] ; then
-  PATH="~/.bundler_binstubs:${PATH}"
-fi
-#
-# Add RVM to PATH for scripting
-if [ -d "${HOME}/.rvm/bin" ] ; then
-  PATH="${PATH}:$HOME/.rvm/bin"
-fi
-
-# Set MANPATH so it includes users' private man if it exists
-if [ -d "${HOME}/man" ]; then
-  MANPATH="${HOME}/man:${MANPATH}"
-fi
-
-# Set INFOPATH so it includes users' private info if it exists
-if [ -d "${HOME}/info" ]; then
-  INFOPATH="${HOME}/info:${INFOPATH}"
-fi
-
-# Load RVM into a shell session *as a function*
-if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
-    source "$HOME/.rvm/scripts/rvm"
-fi
-
-#export PATH="/usr/local/sbin:$PATH"
-#export PATH="$PATH | awk ' !x[$0]++'"
-
-echo "$PATH"
-export PATH
-#export MANPATH
-export INFOPATH
-
-
-
-# Load RVM into a shell session *as a function*
-if [ -s "$HOME/.rvm/scripts/rvm" ] ; then
-  source "$HOME/.rvm/scripts/rvm"
-fi
-
-#export PATH=`echo -n $PATH | awk -v RS=: -v ORS=: '!arr[$0]++'`
 echo "Running .profile"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/usr/home/jon/.sdkman"
-[[ -s "/usr/home/jon/.sdkman/bin/sdkman-init.sh" ]] && source "/usr/home/jon/.sdkman/bin/sdkman-init.sh"
+# vim ft=sh

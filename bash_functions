@@ -1,13 +1,20 @@
 
 # function settitle
 #
-settitle ()
+function settitle ()
 {
-    echo -ne "\e]2;$@\a\e]1;$@\a";
+    git_root="$(basename $(git rev-parse --show-toplevel 2>/dev/null) 2>/dev/null)"
+
+    if [[ $git_root != '' ]]; then
+        echo -ne "\033];${git_root}\007"
+    else
+        echo -ne "\033];${PWD##*/}\007"
+    fi
 }
 
 function defaults ()
-{ echo defaults "$@" >> ~/Documents/defaults.txt
+{
+    echo defaults "$@" >> ~/Documents/defaults.txt
     /usr/bin/defaults "$@"
 }
 
@@ -51,6 +58,10 @@ cd_func ()
     [[ $? -ne 0 ]] && return 1
     the_new_dir=$(pwd)
 
+    # if using iTerm2, set the title
+    if [ $ITERM_SESSION_ID ]; then
+        settitle
+    fi
 
     # Trim down everything beyond 11th entry
     popd -n +11 2>/dev/null 1>/dev/null
@@ -71,6 +82,8 @@ cd_func ()
     return 0
 }
 
+# alias cd='cd_func && settitle'
+#alias cd='cd_func; settitle'
 alias cd=cd_func
 
 # function cd_finder_func
@@ -85,14 +98,14 @@ cd_finder_func() {
     fi
 }
 
-alias cdf=cd_finder_func
+#alias cdf=cd_finder_func
 
 
 # function man_func
 # Get colors in manual pages
 man_func ()
 {
-    env \
+    \env \
         LESS_TERMCAP_mb=$(printf "\e[1;31m") \
         LESS_TERMCAP_md=$(printf "\e[1;31m") \
         LESS_TERMCAP_me=$(printf "\e[0m") \
@@ -115,6 +128,16 @@ ps_grep ()
 alias ps?=ps_grep
 
 
+ps_grep ()
+{
+    args=$@;
+    ps aux | head -1;
+    ps aux | grep "[${args:0:1}]${args:1}";
+}
+
+alias ps?=ps_grep
+
+
 # function cat_color_function
 # Syntax highlighting in cat
 cat_color_func()
@@ -125,82 +148,8 @@ cat_color_func()
     [[ -n $colored ]] && echo "$colored" || echo "$out"
 }
 
-# alias cat=cat_color_func
+alias cat=cat_color_func
 
-
-# This is intended to just run all the things that tend to fix normal docker issues - are there more?
-fix_docker()
-{
-    sudo route -n add -net $(docker-machine ip dev)/24 -interface $(VBoxManage showvminfo dev --machinereadable | grep hostonlyadapter | cut -d '"' -f 2)
-    eval $(docker-machine env dev)
-}
-
-# helper function, turns pwd into a docker exec (where possible)
-docker_command()
-{
-    PROJ=${PWD##*/}
-    PROJ=$(echo "$PROJ" | tr '[:upper:]' '[:lower:]')
-
-    if [ "$PROJ" = "cie" ]
-    then
-        COMMAND="docker-compose -f ../cobaltStarfish/docker-compose.yml run cie"
-    elif [ "$PROJ" = "silvermonkey" ]
-    then
-        COMMAND="docker exec -it cobaltstarfish_recs_1"
-    elif [ "$PROJ" = "collector" ]
-    then
-        COMMAND="docker exec -it cobaltstarfish_collect_1"
-    elif [ "$PROJ" = "greenhawk" ]
-    then
-        COMMAND="docker exec -it cobaltstarfish_reporting_1"
-    else
-        COMMAND="docker exec -it cobaltstarfish_${PROJ}_1"
-    fi
-}
-
-# Use right in the project directory, no need to specify
-# Example src/cie> run rake test
-run()
-{
-    docker_command
-    RUN_COMMAND="$COMMAND bundle exec $*"
-    echo $RUN_COMMAND
-    $RUN_COMMAND
-}
-
-# bundler helper, infers project from directory
-dobundle()
-{
-    docker_command
-    BUNDLE_COMMAND="$COMMAND bundle"
-    echo $BUNDLE_COMMAND
-    $BUNDLE_COMMAND
-}
-
-# just run rubocop on the current project
-rubocop()
-{
-    docker_command
-    $COMMAND bundle exec rake rubocop_git
-}
-
-# run tests without rubocop:
-# you must specify a test file!
-# dotest test/functional/some_controller_test.rb
-# dotest test/functional/some_controller_test.rb -n /pattern.matching.one.test/
-dotest()
-{
-    docker_command
-    TEST_COMMAND="$COMMAND bundle exec ruby -I"lib:test" $*"
-    echo $TEST_COMMAND
-    $TEST_COMMAND
-}
-
-# open batchelor cli from anywhere
-cli()
-{
-    docker exec -ti cobaltstarfish_batchelor_1 ./batchelor_cli console
-}
 
 # bash prompt colorization and git integration
 NO_COLOR="\[\033[0m\]"
@@ -234,39 +183,131 @@ function prompt_command () {
     fi
 }
 
-PROMPT_COMMAND=prompt_command
+function log_command_to_permanent_history () {
+    mkdir ~/.logs 2> /dev/null
+
+    if [ "$(id -u)" -ne 0 ]; then
+        echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log
+    fi
+}
+
+function combined_prompt () {
+    log_command_to_permanent_history
+    prompt_command
+}
+
+#PROMPT_COMMAND=prompt_command
+#export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi';prompt_command
+export PROMPT_COMMAND=combined_prompt
 
 function extract {
     if [ -z "$1" ]; then
         # display usage if no parameters given
         echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
     else
-    if [ -f $1 ] ; then
-        # NAME=${1%.*}
-        # mkdir $NAME && cd $NAME
-        case $1 in
-            *.tar.bz2)   tar xvjf ../$1    ;;
-            *.tar.gz)    tar xvzf ../$1    ;;
-            *.tar.xz)    tar xvJf ../$1    ;;
-            *.lzma)      unlzma ../$1      ;;
-            *.bz2)       bunzip2 ../$1     ;;
-            *.rar)       unrar x -ad ../$1 ;;
-            *.gz)        gunzip ../$1      ;;
-            *.tar)       tar xvf ../$1     ;;
-            *.tbz2)      tar xvjf ../$1    ;;
-            *.tgz)       tar xvzf ../$1    ;;
-            *.zip)       unzip ../$1       ;;
-            *.Z)         uncompress ../$1  ;;
-            *.7z)        7z x ../$1        ;;
-            *.xz)        unxz ../$1        ;;
-            *.exe)       cabextract ../$1  ;;
-            *)           echo "extract: '$1' - unknown archive method" ;;
-        esac
-    else
-        echo "$1 - file does not exist"
+        if [ -f $1 ] ; then
+            # NAME=${1%.*}
+            # mkdir $NAME && cd $NAME
+            case $1 in
+                *.tar.bz2)   tar xvjf ../$1    ;;
+                *.tar.gz)    tar xvzf ../$1    ;;
+                *.tar.xz)    tar xvJf ../$1    ;;
+                *.lzma)      unlzma ../$1      ;;
+                *.bz2)       bunzip2 ../$1     ;;
+                *.rar)       unrar x -ad ../$1 ;;
+                *.gz)        gunzip ../$1      ;;
+                *.tar)       tar xvf ../$1     ;;
+                *.tbz2)      tar xvjf ../$1    ;;
+                *.tgz)       tar xvzf ../$1    ;;
+                *.zip)       unzip ../$1       ;;
+                *.Z)         uncompress ../$1  ;;
+                *.7z)        7z x ../$1        ;;
+                *.xz)        unxz ../$1        ;;
+                *.exe)       cabextract ../$1  ;;
+                *)           echo "extract: '$1' - unknown archive method" ;;
+            esac
+        else
+            echo "$1 - file does not exist"
+        fi
     fi
-fi
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+fbr() {
+    local branches branch
+    branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+        branch=$(echo "$branches" |
+            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+            git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# fd - cd to selected directory
+fd() {
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+    cd "$dir"
 }
 
 
-echo "Running .bash_functions"
+# fdr - cd to selected parent directory
+fdr() {
+    local declare dirs=()
+    get_parent_dirs() {
+        if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+        if [[ "${1}" == '/' ]]; then
+            for _dir in "${dirs[@]}"; do echo $_dir; done
+        else
+            get_parent_dirs $(dirname "$1")
+        fi
+    }
+
+    local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+    cd "$DIR"
+}
+
+
+# cdf - cd into the directory of the selected file
+cdf() {
+    local file
+    local dir
+    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fstash - easier way to deal with stashes
+# type fstash to get a list of your stashes
+# enter shows you the contents of the stash
+# ctrl-d shows a diff of the stash against your current HEAD
+# ctrl-b checks the stash out as a branch, for easier merging
+fstash() {
+    local out q k sha
+    while out=$(
+        git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
+        fzf --ansi --no-sort --query="$q" --print-query \
+            --expect=ctrl-d,ctrl-b);
+    do
+        mapfile -t out <<< "$out"
+        q="${out[0]}"
+        k="${out[1]}"
+        sha="${out[-1]}"
+        sha="${sha%% *}"
+        [[ -z "$sha" ]] && continue
+
+        if [[ "$k" == 'ctrl-d' ]]; then
+            git diff $sha
+        elif [[ "$k" == 'ctrl-b' ]]; then
+            git stash branch "stash-$sha" $sha
+            break;
+        else
+            git stash show -p $sha
+        fi
+    done
+}
+
+
+
+
+
+# echo "Running .bash_functions"
+
+# vim ft=bash
