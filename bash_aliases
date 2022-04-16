@@ -18,7 +18,7 @@ alias 'alias?'='alias | grep'
 alias 'ps?'='ps_grep'
 alias alais=alias
 alias busy="\cat /dev/urandom | hexdump -C | grep \"ca fe\""
-alias cat='pygmentize -g'
+#alias cat='pygmentize -g'
 alias catln='pygmentize -g -O style=colorful,linenos=1'
 alias clear='printf "\033c"'
 alias egrep='egrep --color=auto'              # show differences in colour

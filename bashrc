@@ -92,7 +92,7 @@ if ! shopt -oq posix; then
 fi
 
 
-# complete -d cd
+complete -d cd
 
 # History Options
 

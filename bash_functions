@@ -137,7 +137,7 @@ cat_color_func()
     [[ -n $colored ]] && echo "$colored" || echo "$out"
 }
 
-# alias cat=cat_color_func
+alias cat=cat_color_func
 
 
 # bash prompt colorization and git integration
