@@ -84,8 +84,6 @@ cd_func ()
     return 0
 }
 
-# alias cd='cd_func && settitle'
-#alias cd='cd_func; settitle'
 alias cd=cd_func
 
 # function cd_finder_func
