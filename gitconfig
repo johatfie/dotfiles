@@ -35,10 +35,10 @@
     trustExitCode = false
     keepBackup = false
 
-;[mergetool "p4merge"]
-    ;path = c:/Program Files/Perforce/p4merge.exe
-    ;cmd = p4merge `cygpath -w $BASE` `cygpath -w $LOCAL` `cygpath -w $REMOTE` `cygpath -w $MERGED`
-    ;trustExitCode = false
+#;[mergetool "p4merge"]
+    #;path = c:/Program Files/Perforce/p4merge.exe
+    #;cmd = p4merge `cygpath -w $BASE` `cygpath -w $LOCAL` `cygpath -w $REMOTE` `cygpath -w $MERGED`
+    #;trustExitCode = false
 
 [mergetool]
     keepBackup = false
@@ -56,7 +56,7 @@
 
 [difftool "p4merge"]
     #cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$PWD/$REMOTE\"" "\"$PWD/$LOCAL\""
-    ;cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+    #;cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\"
     cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge \"$LOCAL\" \"$REMOTE\"
     #;cmd="~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE"
     #;cmd = /usr/bin/p4merge ""\"$REMOTE\"" "\"$LOCAL\""
@@ -127,7 +127,7 @@
     ec = config --global -e
 
     # Find alias
-    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%_10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
+    finda = "!grepalias() { git config --global --get-regexp alias | grep -i \"$1\" | awk -v nr=2 '{sub(/^alias\\./,\"\")};{printf \"\\033[31m%10s\\033[1;37m\", $1};{sep=FS};{for (x=nr; x<=NF; x++) {printf \"%s%s\", sep, $x; }; print \"\\033[0;39m\"}'; }; grepalias"
 
     graph = log --graph --all --pretty=format:'%Cred%h%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset' --abbrev-commit --date=relative
     last = log -1 HEAD
@@ -207,7 +207,8 @@
 [pull]
     rebase = false
 
+[init]
+    defaultBranch = master
+
 [includeIf "gitdir:~/projects/"]
   path = ~/.dotfiles/gitconfig-work
-[init]
-	defaultBranch = master

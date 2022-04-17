@@ -35,7 +35,10 @@ cd_func ()
         return 0
     fi
 
-    the_new_dir=$1
+    #the_new_dir=$1
+    the_new_dir=$(echo $1 | sed 's/#.*//g')
+    #echo "$the_new_dir"
+
     [[ -z $1 ]] && the_new_dir=$HOME
 
     if [[ ${the_new_dir:0:1} == '-' ]]; then
@@ -260,6 +263,14 @@ cdf() {
     file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
+v() {
+  local files
+  files=$(grep '^>' ~/.vim/viminfo | cut -c3- |
+          while read line; do
+            [ -f "${line/\~/$HOME}" ] && echo "$line"
+          done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+}
+
 # fstash - easier way to deal with stashes
 # type fstash to get a list of your stashes
 # enter shows you the contents of the stash
@@ -290,6 +301,24 @@ fstash() {
     done
 }
 
+# Setup cdg function
+# ------------------
+# https://dmitryfrank.com/articles/shell_shortcuts
+unalias cdg 2> /dev/null
+cdg() {
+   local dest_dir=$(cdscuts_glob_echo | fzf )
+   if [[ $dest_dir != '' ]]; then
+      cd $dest_dir
+   fi
+}
+export -f cdg > /dev/null
+
+cdg-add () {
+    local curr_dir="${PWD} # $*"
+    if ! grep -Fxq "$curr_dir" ~/.cdg_paths; then
+        echo "$curr_dir" >> ~/.cdg_paths
+    fi
+}
 
 
 

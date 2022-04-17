@@ -3,8 +3,11 @@
 
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 PUSH_COMMAND=`ps -ocommand= -p $PPID`
-PROTECTED_BRANCHES="^(master|dev|develop|release-*|patch-*)"
-FORCE_PUSH="force|delete|-f"
+#PROTECTED_BRANCHES="^(master|dev|develop|release-*|patch-*)"
+PROTECTED_BRANCHES="^(main|master|dev|develop|release-*|patch-*)"
+FORCE_PUSH="force|delete| -f"
+
+# echo $PUSH_COMMAND
 
 if [[ "$BRANCH" =~ $PROTECTED_BRANCHES && "$PUSH_COMMAND" =~ $FORCE_PUSH ]]; then
   echo "Prevented force-push to protected branch \"$BRANCH\" by pre-push hook"

@@ -75,6 +75,36 @@ alias .6='cd ../../../../../../'
 alias .7='cd ../../../../../../../'
 
 
+# https://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-bash-aliases/
+
+#copy output of last command to clipboard
+alias cl="fc -e -|pbcopy"
+
+# top
+alias cpu='top -o cpu'
+alias mem='top -o rsize' # memory
+
+# copy the working directory path
+alias cpwd='pwd|tr -d "\n" | pbcopy'
+
+# share history between terminal sessions
+alias he="history -a" # export history
+alias hi="history -n" # import history
+
+# Get your current public IP
+alias ip="curl icanhazip.com"
+
+# mute the system volume
+alias stfu="osascript -e 'set volume output muted true'"
+
+# trim newlines
+alias tn='tr -d "\n"'
+
+# list TODO/FIX lines from the current project
+alias todos="ack -n --nogroup '(TODO|FIX(ME)?):'"
+
+
+
 ## pass options to free ##
 alias meminfo='free -m -l -t'
 
