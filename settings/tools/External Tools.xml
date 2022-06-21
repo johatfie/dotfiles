@@ -1,0 +1,9 @@
+<toolSet name="External Tools">
+  <tool name="MacVim" description="Open current file in MacVim" showInMainMenu="false" showInEditor="false" showInProject="false" showInSearchPopup="false" disabled="false" useConsole="false" showConsoleOnStdOut="false" showConsoleOnStdErr="false" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="/usr/local/bin/mvim" />
+      <option name="PARAMETERS" value="--servername Intellij --remote-silent &quot;+call cursor($LineNumber$,$ColumnNumber$)&quot; $FileDir$/$FileName$" />
+      <option name="WORKING_DIRECTORY" value="$ProjectFileDir$" />
+    </exec>
+  </tool>
+</toolSet>
