@@ -1,2 +1,6 @@
 [user]
     email = Jon.Hatfield@nike.com
+
+[init]
+    defaultBranch = main
+

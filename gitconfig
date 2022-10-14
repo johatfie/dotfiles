@@ -210,4 +210,6 @@
 [includeIf "gitdir:~/projects/"]
   path = ~/.dotfiles/gitconfig-work
 [init]
-	defaultBranch = master
+    defaultBranch = master
+[safe]
+    directory = /usr/local/squid_toolkit
