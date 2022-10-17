@@ -41,7 +41,7 @@
     #export PATH=/usr/local/bin:$PATH
 #fi
 
-if [ -d $HOME/.bundler_binstubs ] ; then
+if [ -d "$HOME/.bundler_binstubs" ] ; then
     export PATH="~/.bundler_binstubs:$PATH"     # I don't remember what this was for, but now it's enclosed in an if block
 fi
 

@@ -29,7 +29,7 @@
 
 # source the users bashrc if it exists
 if [ -f "${HOME}/.bashrc" ] ; then
-  source "${HOME}/.bashrc"
+    source "${HOME}/.bashrc"
 fi
 
 # Set PATH so it includes Homebrew's sbin if it exists
@@ -39,22 +39,28 @@ fi
 
 # Set PATH so it includes user's private bin if it exists
 if [ -d "${HOME}/bin" ] ; then
-  PATH="${HOME}/bin:${PATH}"
+    PATH="${HOME}/bin:${PATH}"
 fi
 
 # Set PATH so it includes user's brew Applications folder if it exists
 if [ -d "${HOME}/Applications" ] ; then
-  PATH="${HOME}/Applications:${PATH}"
+    PATH="${HOME}/Applications:${PATH}"
+fi
+
+# Set PATH so it includes user's .jenv/bin folder if it exists
+if [ -d "${HOME}/.jenv" ]; then
+    PATH="$HOME/.jenv/bin:$PATH"
+    eval "$(jenv init -)"
 fi
 
 # Set MANPATH so it includes users' private man if it exists
 if [ -d "${HOME}/man" ]; then
-  MANPATH="${HOME}/man:${MANPATH}"
+    MANPATH="${HOME}/man:${MANPATH}"
 fi
 
 # Set INFOPATH so it includes users' private info if it exists
 if [ -d "${HOME}/info" ]; then
-  INFOPATH="${HOME}/info:${INFOPATH}"
+    INFOPATH="${HOME}/info:${INFOPATH}"
 fi
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
@@ -62,10 +68,6 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 
 # Remove duplicates from PATH

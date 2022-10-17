@@ -5,7 +5,7 @@
 function run_test {
     # Include any branches for which you wish to disable this script
     if [ -z "$BRANCHES_TO_SKIP" ]; then
-        BRANCHES_TO_SKIP=(master develop)
+        BRANCHES_TO_SKIP=(master develop main)
 #         echo $BRANCHES_TO_SKIP
 #         echo $?
     fi
@@ -26,15 +26,15 @@ function run_test {
     # If it isn't excluded, prepend the trimmed branch identifier to the given message
     if [ -n "$BRANCH_NAME" ] &&  ! [[ $BRANCH_EXCLUDED -eq 1 ]]; then
 #         sed -i.bak -e "1s/^/$TRIMMED /" $1
-        sed -i.bak -e "1s/^/$TRIMMED/" -e "1s/$TRIMMED$TRIMEMD/$TRIMMED/" $1
+        sed -i.bak -e "1s/^/$TRIMMED /" -e "1s/$TRIMMED $TRIMMED/$TRIMMED/" $1
 #         echo $?
         #sed -e "1s/^/$TRIMMED /" $1
     fi
 }
 
-        #sed -i.bak -e "1s/^/$TRIMMED/" -e "1s/$TRIMMED$TRIMEMD/$TRIMMED/" $1
+        #sed -i.bak -e "1s/^/$TRIMMED/" -e "1s/$TRIMMED$TRIMMED/$TRIMMED/" $1
 #         sed -i.bak -e "1s/^/$TRIMMED/" $1
-#         sed -i.bak -e "1s/$TRIMMED$TRIMEMD/$TRIMMED/" $1
+#         sed -i.bak -e "1s/$TRIMMED$TRIMMED/$TRIMMED/" $1
 
 case "${1}" in
     --about )
