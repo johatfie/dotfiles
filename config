@@ -1,0 +1,31 @@
+#johatfie account
+Host jon
+    HostName github.com
+    #User johatfie
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+    LogLevel DEBUG1
+    #LogLevel DEBUG3
+    IdentitiesOnly yes
+
+#jhatf3_nike account
+Host nike
+    HostName github.com
+    AddKeysToAgent yes
+    #UseKeychain yes
+    #User jhatf3_nike
+    User git
+    IdentityFile ~/.ssh/jh_nike_ed25519
+    #LogLevel DEBUG1
+    LogLevel DEBUG3
+    IdentitiesOnly yes
+
+Host *.amazonaws.com
+    ProxyCommand squid_proxy %h %p
+
+Host *
+    AddKeysToAgent yes
+    #UseKeychain yes
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
+
