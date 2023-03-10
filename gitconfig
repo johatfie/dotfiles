@@ -208,3 +208,7 @@
 
 [includeIf "gitdir:~/projects/"]
   path = ~/.dotfiles/gitconfig-work
+[safe]
+	directory = /usr/src
+	directory = /usr/ports
+	directory = /etc
