@@ -82,14 +82,14 @@ alias .7='cd ../../../../../../../'
 # https://brettterpstra.com/2013/03/31/a-few-more-of-my-favorite-bash-aliases/
 
 #copy output of last command to clipboard
-alias cl="fc -e -|pbcopy"
+alias cl="fc -e -| pbcopy"
 
 # top
 alias cpu='top -o cpu'
 alias mem='top -o rsize' # memory
 
 # copy the working directory path
-alias cpwd='pwd|tr -d "\n" | pbcopy'
+alias cpwd='pwd | tr -d "\n" | pbcopy'
 
 # share history between terminal sessions
 alias he="history -a" # export history
