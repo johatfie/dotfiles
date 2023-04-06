@@ -101,16 +101,12 @@ brew "neovim"
 brew "node"
 # Command-line collection runner for Postman
 brew "newman"
-# Platform built on V8 to build network applications
-brew "node@14"
 # Bash completion for open
 brew "open-completion"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Convert PDFs to images
 brew "pdf2image"
-# Object-relational database system
-brew "postgresql@9.6"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Generic syntax highlighter
@@ -195,9 +191,4 @@ cask "visual-studio-code"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 mas "Amphetamine", id: 937984704
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
 mas "LastPass", id: 926036361
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
